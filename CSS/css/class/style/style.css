@@ -1,0 +1,33 @@
+a{
+    text-decoration: none;
+    color: brown;
+}
+a:hover{
+    font-size: 24px;
+}
+.courses{
+    text-align: center;
+}
+.div1{
+    width: 32%;
+    height: auto;
+    border-left: 1px solid black;
+    margin-left: 20px;
+    text-align: justify;
+    float: left;
+}
+.div1 img{
+    width: 605px;
+    height: 400px;
+}
+.div1 img:hover{
+    opacity: 0.7;
+}
+.text{
+    color: brown;
+    font-size: larger;
+}
+.subdiv{
+    margin-left: 10px;
+}
+
