@@ -1,0 +1,48 @@
+.container{
+    width: 650px;
+    height: 800px;
+    margin-left: auto;
+    margin-right: 650px;
+    margin-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 25px;
+    background-color:#8f0ad1;
+}
+
+.heading{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+    color:#ffffff;
+}
+.form{
+    padding-left: 60px;
+    margin-top: 40px;
+    color:#ffffff;
+}
+input{
+    width: 500px;
+    height: 40px;
+    background-color: #ffffff;
+    border: none;
+}
+textarea{
+    width: 500px;
+    height: 100px;
+}
+.dropdown{
+    width: 505px;
+    height: 40px;
+    color: rgb(68, 66, 66);
+    border: none;
+    background-color: #ffffff;
+}
+.btn{
+    margin-top: 20px;
+    background-color:#b690c9;
+    color:#ffffff;
+    width: 500px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+}
