@@ -1,0 +1,144 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #ede8f5;;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    margin-top: 60px;
+}
+.navbar nav{
+    /* padding-top: 10px; */
+    padding-left: 35%;
+}
+.navbar nav ul{
+    display: flex;
+    list-style-type: none;
+}
+.navbar nav ul li{
+    padding-left: 40px;
+}
+.navbar nav ul li a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+}
+.navbar nav ul li a:hover{
+    color: rgb(86, 101, 233);
+}
+.row{
+    width: auto;
+    height: 90%;
+    padding-bottom: 100px;
+}
+.right{
+    text-align: end;
+}
+
+.container{
+    width: 100%;
+    height: auto;
+}
+.description{
+    width: 600px;
+    height: auto;
+    text-align: justify;
+    margin-left: 20px;
+}
+.description span{
+    font-size: 20px;
+    color: #000000;
+}
+
+.main-heading-right {
+    text-align: end;
+}
+
+.line{
+    width: 200px;
+    height: 10px;
+    background-color: #adbbda;
+    padding-right: 20px;
+}
+.circle{
+    width: 30px;
+    height: 30px;
+    background-color: #adbbda;
+    border-radius: 50%
+}
+.main-heading-right span{
+    font-size: 150px;
+}
+.main-heading-left{
+    display: flex;
+}
+.main-heading-left span{
+    font-size: 150px;
+}
+.main-heading-left .circle{
+    margin-left: 30px;
+}
+
+.main-heading-middle{
+    padding-left: 40%;
+}
+.main-heading-middle span{
+    font-size: 150px;
+}
+.main-heading-middle .circle{
+    margin-left: 30px;
+}
+
+.section{
+    padding-top: 10px;
+    width: 100%;
+    height: 80%;
+}
+.section .row{
+    display: flex;
+}
+.sub-section{
+    padding-top: 10px;
+    width: 100%;
+    height: 80%;
+}
+.sub-section .row{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding-left: 8%;
+   
+}
+.sub-section .row .col{
+    width: 400px;
+    height: 400px;
+    /* background-color: ; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    text-align: center;
+}
+.text{
+    margin-top: 130px;
+}
+
+.text span{
+    font-size: 45px;
+    font-weight: 800;
+    
+  }
+.span-bg1{
+    background-color: #ede8f5;
+    color: #adbbda ;
+}
+.span-bg2{
+    background-color:#adbbda;
+    color: #ede8f5;
+}
+.sub-section .row p{
+    width: 92%;
+    text-align: justify;
+    font-size: 20px;
+    line-height: 30px;
+
+}
