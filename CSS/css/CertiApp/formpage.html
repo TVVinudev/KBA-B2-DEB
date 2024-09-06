@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/CSS/css/CertiApp/style/formpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form page</title>
+</head>
+<body>
+    <nav style="display: flex;">
+        <h2>Certifiacate App</h2>
+        <ul style="display: flex;">
+            <li><a href="" style="text-decoration: none; color: black; padding: 10px 20px; font-size: 20px;">Home</a></li>
+            <li style="text-decoration: none; color: black;"><a href="" style="font-size: 20px; text-decoration: none; color: black; background-color:rgb(34, 214, 214); padding: 10px 20px;">Issue Certificate</a>  </li>
+        </ul>
+    </nav>
+
+    <div class="col" style="width: 900px;">
+        <form>
+            <div>
+                <label>Select Course*</label>
+                <select>
+                    <option value="">Select</option>
+                    <option value="">Certificate BlockChain Account</option>
+                
+                </select>
+            </div>
+
+          <div>
+            <label>Certificate ID*</label>
+            <input type="text" placeholder="Certificate ID" required>
+          </div>
+           
+           <div>
+            <label>Certificate Name*</label>
+            <input type="text" placeholder="Certificate Name" required>
+           </div>
+          
+           <div>
+            <label>Select Grade*</label>
+            <select>
+                <option value="">Select</option>
+                <option value="">S</option>
+            
+            </select>
+           </div>
+
+        <div>
+            <label>Issue Date*</label>
+            <input type="date" placeholder="Issue date" required>
+        </div>
+
+
+          
+
+            <button type="submit" style="cursor: pointer; background-color: rgb(24, 190, 196);">Issue Certificate</button>
+        </form>
+    </div>
+</body>
+</html>

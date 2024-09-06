@@ -57,15 +57,39 @@ body{
 }
 
 .line{
+    position: sticky;
+    top: 30px;
     width: 200px;
-    height: 10px;
+    height: 40px;
     background-color: #adbbda;
     padding-right: 20px;
+  
+}
+.line h2{
+    color: #ede8f5;
+    padding-top: 5px;
+    padding-left: 40px;
+}
+.line1{
+    width: 200px;
+    height: 10px;
+    background-color:#ede8f5;
+    padding-right: 20px;
+    transition: 0.5s;
+}
+.line1:hover{
+    width: 600px;
 }
 .circle{
     width: 30px;
     height: 30px;
     background-color: #adbbda;
+    border-radius: 50%
+}
+.circle1{
+    width: 30px;
+    height: 30px;
+    background-color:#ede8f5;
     border-radius: 50%
 }
 .main-heading-right span{
@@ -86,6 +110,7 @@ body{
 }
 .main-heading-middle span{
     font-size: 150px;
+    color: #ede8f5;
 }
 .main-heading-middle .circle{
     margin-left: 30px;
@@ -95,6 +120,9 @@ body{
     padding-top: 10px;
     width: 100%;
     height: 80%;
+}
+.section-bg{
+    background-color: #adbbda;
 }
 .section .row{
     display: flex;
@@ -141,4 +169,150 @@ body{
     font-size: 20px;
     line-height: 30px;
 
+}
+.project-div{
+    width: 50%;
+    text-align: center;
+    padding-left: 50px;
+}
+.project-div h2{
+    font-size: 45px;
+    color: #ede8f5;
+    text-transform: uppercase;
+}
+.project-div p{
+    text-align: justify;
+    padding-right: 10px;
+    font-size: 20px;
+}
+.project-div p a{
+    /* text-decoration: none; */
+    color: #ede8f5;
+}
+.main-circle{
+    display: flex;
+    text-align: center;
+
+}
+.main-circle .circle1{
+    top: 30px;
+    margin-left: 30px;
+
+}
+.main-circle .circle{
+    top: 30px;
+    margin-left: 30px;
+}
+.education-details{
+    width: 100%;
+    height: auto;
+}
+
+.education-container{
+    /* margin-left: 20px; */
+    width: 1300px;
+    height: 100px;
+    background-color: #adbbda;
+    border-radius:0 80px 80px 0;
+    text-align: center;
+    padding-top: 10px;
+}
+.education-container .course{
+    font-size: 50px;
+    color: #ede8f5;
+}
+.education-container .university{
+    font-size: 20px;
+    word-spacing: 5px;
+    color: rgba(0, 0, 0, 0.555);
+}
+
+.section-contactus{
+    width: 100%;
+    height: auto;
+    /* padding: 20px; */
+}
+.contact-row{
+    display: flex;
+}
+.contact-col{
+    width: 40%;
+    height: 900px;
+    background-color: #adbbda;
+    color: #ede8f5;
+    margin-bottom: 20px;
+}
+.contact-col2{
+    width: 60%;
+    height: 900px;
+    margin-bottom: 20px;
+}
+.contact-heading{
+    /* text-align: center; */
+    padding-left: 70px;
+}
+.follow{
+    text-align: center;
+    padding-top: 40px;
+}
+.follow span{
+    font-size: 60px;
+}
+.contact-heading{
+    text-align: center;
+}
+.contact-heading span{
+    font-size: 100px;
+}
+.follow-card{
+    margin-top: 50px;
+    height: 30%;
+    width: auto;
+}
+.follow-card img{
+    width: 150px;
+    height: 150px;
+}
+.follow-card a{
+    text-decoration: none;
+    color: #000000;
+}
+.follow-card span{
+    font-size: 20px;
+    color: #000;
+}
+.contact-msg{
+    color: #00000093;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 40px;
+    word-spacing: 10px;
+}
+.contact-form{
+    text-align: center;
+    margin-top: 30px;
+}
+.form-input{
+    display: inline;
+}
+.form-input input{
+    margin-top: 40px;
+    padding-left: 10px;
+    width: 600px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+}
+.form-input textarea{
+    width: 600px;
+    height:100px;
+    margin-top: 40px; 
+    border-radius: 15px;  
+    border: none;
+    padding-left: 10px;
+    padding-top: 40px;
+}
+.form-btn input{
+    background-color: #adbbda;
+    color: #ede8f5;
 }
