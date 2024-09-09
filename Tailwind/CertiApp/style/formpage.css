@@ -1,0 +1,49 @@
+body{
+    background-color: #e5e7e9;
+}
+
+nav{
+    
+    /* justify-content: space-between; */
+}
+nav ul{
+    list-style: none;
+    
+}
+nav ul li{
+    /* margin: 0px 20px; */
+    float: right;
+    padding: 10px 20px; 
+    font-size: 20px;
+}
+.col{
+    background-color: #f4f6f6;
+    padding: 20px;
+    margin: auto;
+    /* text-align: center; */
+}
+.heading{
+    text-align: center;
+}
+.col form input{
+ width: 400px;
+ height: 30px;
+ display: block;
+margin-top: 10px;
+margin-bottom: 10px;
+
+}
+select{
+    display: block;
+    width: 400px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form button{
+    padding: 10px 20px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer; 
+    background-color: rgb(24, 190, 196);
+}

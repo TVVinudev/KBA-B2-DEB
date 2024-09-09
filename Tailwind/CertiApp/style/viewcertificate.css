@@ -1,0 +1,20 @@
+body{
+    background-color: #e5e7e9;
+}
+ul li{
+    margin-bottom: 15px;
+}
+.row{
+    margin: 70px;
+ 
+}
+.col{
+    background-color: #f4f6f6;
+    margin: 60px;
+    padding: 30px;
+}
+/* .coll{
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    } */

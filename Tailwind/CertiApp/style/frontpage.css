@@ -1,0 +1,14 @@
+body{
+    background-color: #e5e7e9;
+}
+nav{
+    height: 40px;
+}
+nav ul li{
+    margin-right: 50px;
+
+}
+nav ul{
+    list-style: none;
+   float: right;
+}
