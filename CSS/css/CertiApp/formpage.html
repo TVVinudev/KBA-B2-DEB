@@ -7,18 +7,22 @@
     <title>form page</title>
 </head>
 <body>
-    <nav style="display: flex;">
-        <h2>Certifiacate App</h2>
-        <ul style="display: flex;">
-            <li><a href="" style="text-decoration: none; color: black; padding: 10px 20px; font-size: 20px;">Home</a></li>
-            <li style="text-decoration: none; color: black;"><a href="" style="font-size: 20px; text-decoration: none; color: black; background-color:rgb(34, 214, 214); padding: 10px 20px;">Issue Certificate</a>  </li>
+    <nav>
+        <ul>
+            <li><a href="" style="font-size: 20px; text-decoration: none; color: black; background-color:rgb(34, 214, 214); padding: 10px 20px;">Issue Certificate</a>
+              </li>
+              <li><a href="" style="text-decoration: none; color: black; ">Home</a></li>
         </ul>
     </nav>
 
-    <div class="col" style="width: 900px;">
+    <div class="col" style="width: 400px;">
+        <div class="heading">
+            <h2>Certificate App</h2>
+        </div>
+        
         <form>
             <div>
-                <label>Select Course*</label>
+                <label>Select Course</label>
                 <select>
                     <option value="">Select</option>
                     <option value="">Certificate BlockChain Account</option>
@@ -27,17 +31,17 @@
             </div>
 
           <div>
-            <label>Certificate ID*</label>
+            <label>Certificate ID</label>
             <input type="text" placeholder="Certificate ID" required>
           </div>
            
            <div>
-            <label>Certificate Name*</label>
+            <label>Certificate Name</label>
             <input type="text" placeholder="Certificate Name" required>
            </div>
           
            <div>
-            <label>Select Grade*</label>
+            <label>Select Grade</label>
             <select>
                 <option value="">Select</option>
                 <option value="">S</option>
@@ -53,7 +57,7 @@
 
           
 
-            <button type="submit" style="cursor: pointer; background-color: rgb(24, 190, 196);">Issue Certificate</button>
+            <button type="submit">Issue Certificate</button>
         </form>
     </div>
 </body>

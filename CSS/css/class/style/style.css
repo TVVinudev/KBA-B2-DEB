@@ -1,33 +1,66 @@
-a{
+a {
     text-decoration: none;
     color: brown;
 }
-a:hover{
+
+a:hover {
     font-size: 24px;
 }
-.courses{
+
+.courses {
     text-align: center;
 }
-.div1{
+
+.row {
+    display: flex;
+}
+
+.div1 {
     width: 32%;
     height: auto;
     border-left: 1px solid black;
     margin-left: 20px;
     text-align: justify;
-    float: left;
+    /* float: right; */
 }
-.div1 img{
+
+.div1 img {
     width: 605px;
     height: 400px;
 }
-.div1 img:hover{
+
+.div1 img:hover {
     opacity: 0.7;
 }
-.text{
+
+.text {
     color: brown;
     font-size: larger;
 }
-.subdiv{
+
+.subdiv {
     margin-left: 10px;
+
 }
 
+@media only screen and (max-width:600px) {
+    .row {
+        display: inline;
+    }
+
+    .div1 {
+        width: auto;
+        height: auto;
+        text-align: justify;
+        border: none;
+        margin: 0;
+    }
+    .div1 img {
+        width: 600px;
+        height: 350px;
+    }
+    .subdiv{
+        margin:0;
+        
+    }
+}
