@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD COURSE</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   
+  <div class="m-3 p-4  flex justify-between shadow-2xl">
+    <img src="../images/kbalogo.png" alt="" class="p-2 w-12">
+    <nav>
+      <ul class="flex justify-end p-2">
+        <li class="pr-5"><a href="../index.html" class="text-rose-950 hover:text-gray-400">HOME</a></li>
+        <li class="pr-5"><a href="./courses.html" class="text-rose-950 hover:text-gray-400">COURSE</a></li>
+        <li class="pr-5"><a href="./add_course.html" class="text-rose-950 hover:text-gray-400">ADD COURSE</a></li>
+        <li class="pr-5"><a href="./contact.html" class="text-rose-950 hover:text-gray-400">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <div class="flex justify-center mt-10">
+    <div class="bg-rose-950 w-4/12 max-h-full p-14 mt-3  rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]">
+        <H2 class="text-white font-mono text-2xl font-bold text-center">Update Course</H2>
+        <div class="ml-8">
+            <form action="">
+                <div class="mt-4 pl-5">
+                    <h4 class="text-white">Update Course Name:</h4>
+                    <input type="text" required class="w-96 h-10 ">
+                </div>
+
+                <!-- <div class="mt-4 pl-5">
+                    <h4 class="text-white">Course ID:</h4>
+                    <input type="password" required class="w-96 h-10">
+                </div> -->
+                <div class="mt-4 pl-5">
+                    <h4 class="text-white">Course Type:</h4>
+                    <select class="w-96 h-10">
+                        <option value="">PCB</option>
+                        <option value="">CS</option>
+                        <option value="">BC</option>
+                    </select>
+                </div>
+                <div class="mt-4 pl-5">
+                    <h4 class="text-white">Description:</h4>
+                    <textarea id="message" rows="4" cols="2" class="block p-2.5 w-96 text-sm text-gray-900 bg-white rounded-lg border" placeholder="Write your thoughts here..."></textarea>
+                </div>
+                <div class="mt-4 pl-5">
+                    <h4 class="text-white">Price</h4>
+                    <select class="w-96 h-10">
+                        <option value="">$1500</option>
+                        <option value="">$2000</option>
+                        <option value="">$2500</option>
+                    </select>
+                </div>
+
+                <div class=" mt-5 ml-5  bg-white  rounded-xl  text-center w-96 h-10">
+                    <input type="button" class="text-rose-950 p-3 w-32  rounded-xl " value="Add Course" required >
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+    
+</body>
+</html>
