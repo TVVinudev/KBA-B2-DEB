@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <script>
+
+        let x;
+        x = 15;
+        y = "Akhil chanth";
+        p = null;
+        d = p
+
+        document.getElementById("demo").innerHTML = x + " years";
+        document.write("type of x is ", typeof x);
+        document.write("<br> type of y is ", typeof y);
+        document.write("<br> type of p is ", typeof p);
+        document.write("<br> type of d is ", typeof d);
+
+        //compaire const and let
+
+        const m= 20;
+        document.write("<br> value of m is ",m)
+        {
+            let x=25;
+            document.write("<br> value of x is ",x); // take inner x value
+        }
+        document.write("<br> value of x is ",x) //take outer x value
+
+    </script>
+</body>
+
+</html>

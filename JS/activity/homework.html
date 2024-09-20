@@ -8,19 +8,19 @@
 </head>
 <script>
     //Arithmetic Operations
-    console.log("sum of 2+5 is: ",2+5);
-    document.write("sum of 2+5 is: ",2+5, "<br>");
+    console.log("sum of 2+5 is: ", 2 + 5);
+    document.write("sum of 2+5 is: ", 2 + 5, "<br>");
     document.write("product of 5*10 is:  ", 5 * 10, "<br>");
-    document.write("BODMAS (26*3)+4:  ",(26 * 3) + 4, "<br>");
-    document.write("Divide 56/5:  ",56 / 5, "<br>");
+    document.write("BODMAS (26*3)+4:  ", (26 * 3) + 4, "<br>");
+    document.write("Divide 56/5:  ", 56 / 5, "<br>");
 
     //Print Pattern 1
-    document.write("<br><br>","*", "<br>");
+    document.write("<br><br>", "*", "<br>");
     document.write("*\t*", "<br>");
     document.write("*\t*\t*", "<br>");
 
     //Print Pattern 2
-    document.write("<br><br>","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\t\t*", "<br>");
+    document.write("<br><br>", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\t\t*", "<br>");
     document.write("&nbsp;&nbsp;&nbsp;\t*\t*", "<br>");
     document.write("&nbsp;*\t*\t*", "<br>");
 
@@ -38,7 +38,7 @@
 
     //output using document.write()
     document.write("<br><br>");
-    
+
     a = 3 + 4 - 1;
     b = (3 * 5) + 1;
     c = (5 * 2) / 2;
@@ -58,26 +58,26 @@
 </script>
 
 <body>
-    
+
 
     <br><br>
-    (5 * 6) % 4 = <p id="P1"></p>
-    3.5 + 2.4 =<p id="P2"></p>
-    104.5 / 5 =<p id="P3"></p>
-    4.5 * 2 =<p id="P4"></p>
+    <p id="P1"></p>
+    <p id="P2"></p>
+    <p id="P3"></p>
+    <p id="P4"></p>
 
     <script>
-    //output using document.getElement
+        //output using document.getElement
 
-    X=(5 * 6) % 4;
-    Y=3.5 + 2.4;
-    Z=104.5 / 5;
-    A=4.5 * 2;
+        X = (5 * 6) % 4;
+        Y = 3.5 + 2.4;
+        Z = 104.5 / 5;
+        A = 4.5 * 2;
 
-    document.getElementById("P1").innerHTML= X; 
-    document.getElementById("P2").innerHTML = Y;
-    document.getElementById("P3").innerHTML = Z;
-    document.getElementById("P4").innerHTML = A;
+        document.getElementById("P1").innerHTML = "(5 * 6) % 4 = " + X;
+        document.getElementById("P2").innerHTML = " 3.5 + 2.4 = " + Y;
+        document.getElementById("P3").innerHTML = "104.5 / 5 = " + Z;
+        document.getElementById("P4").innerHTML = " 4.5 * 2 = " + A;
     </script>
 
 </body>
