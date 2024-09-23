@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="margin-left: 10vw; margin-bottom: 20px;">
 
     <h3>Program to swap two numbers using a temporary variable</h3>
     <br>
@@ -17,11 +17,15 @@
             let x = 5;
             let y = 5;
             let swap;
+
             document.write(`before swap : x=${x} & y=${y}`);
+
             swap = x;
             x = y;
             y = swap;
+
             document.write(`<br>after swap : x=${x} & y=${y}`);
+
         } 
     </script>
 
@@ -32,11 +36,12 @@
         {
             let x = 5;
             let y = 6;
+
             document.write(`<br>before swap : x=${x} & y=${y}`);
 
             x = x + y;
             y = x - y;
-            x = x - y
+            x = x - y;
 
             document.write(`<br>after swap : x=${x} & y=${y}`);
         } 
@@ -48,11 +53,13 @@
     <script>
         {
             let x = 5;
+
             document.write(`<br> Degree Celsius : ${x}`);
 
             let y = (x * 9.0 / 5.0) + 32.0;
 
             document.write(`<br> Fahrenheit  : ${y}`);
+
         } 
     </script>
 
@@ -62,6 +69,7 @@
     <script>
         {
             let x = 5;
+
             document.write(`<br> Number :${x}`);
 
             let y = x * x;
@@ -164,12 +172,14 @@
 
             document.write(`<br> Simple Interest`);
             document.write(`<br>-------------------------`);
+
             document.write(`<br> P , T & R : ${p}, ${t} & ${r}`);
             let y = (p * t * r) / 100;
             document.write(`<br> Interest  : ${y}`);
 
             document.write(`<br> <br>Compound `);
             document.write(`<br>-------------------------`);
+
             document.write(`<br> P , T & R : ${p}, ${t} & ${r}`);
             let A = p * Math.pow((1 + r / 100), t);
             let CI = A - p;
@@ -184,6 +194,9 @@
         {
             let t = 10;
             let r = 3;
+
+            document.write(`<br> input numbers : ${t} & ${r} `)
+
             if (t > r) {
                 document.write(`<br> ${t} is larger than ${r}`);
             }
@@ -201,37 +214,41 @@
             let t = 10;
             let r = 3;
             let p = 7;
-            if (t > r && t> p) {
+
+            document.write(`<br> input numbers : ${t}, ${r} & ${p}`)
+
+            if (t > r && t > p) {
                 document.write(`<br> ${t} is larger than ${r} & ${p}`);
             }
-            else if(r>p){
+            else if (r > p) {
                 document.write(`<br> ${r} is larger than ${t} & ${p}`);
             }
-            else{
+            else {
                 document.write(`<br> ${p} is larger than ${t} & ${r}`);
             }
 
         } 
     </script>
 
-<br><br>
-<h3> Program to check the given number is zero,positive and negative </h3>
-<script>
-    {
-        let t = 10;
-        
-        if (t > 0 ) {
-            document.write(`<br> ${t} is posaitive number`);
-        }
-        else if(t<0){
-            document.write(`<br> ${t} is negative number`);
-        }
-        else{
-            document.write(`<br> ${t} is Zero`);
-        }
+    <br><br>
+    <h3> Program to check the given number is zero,positive and negative </h3>
+    <script>
+        {
+            let t = 10;
+            document.write(`<br> input number :${t}`);
 
-    } 
-</script>
+            if (t > 0) {
+                document.write(`<br> ${t} is posaitive number`);
+            }
+            else if (t < 0) {
+                document.write(`<br> ${t} is negative number`);
+            }
+            else {
+                document.write(`<br> ${t} is Zero`);
+            }
+
+        } 
+    </script>
 
 
 </body>
