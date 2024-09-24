@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv">
+        <h1>HELLO!!</h1>
+    </div>
+
+
+ <!-- this concept is mainly using for create elements/tags using javascript  -->
+
+ <script>
+
+     let element = document.createElement("p");  //create a variable to store the tag/element
+     element.innerHTML = "welcome to dubai"; // innerHTML is using to add contents in the p tag (like <p> welcome to dubai </p>)
+     document.getElementById ("mydiv").appendChild(element); // append the tag in the div, that created in the top which id as  "mydiv"
+
+     let element_input = document.createElement("input");  //create a variable to store the input tag
+     element_input.placeholder = " Enter your name"; // innerHTML is using to add contents in the input tag (like <input placeholder = "enter name"> )
+     document.getElementById ("mydiv").appendChild(element_input); // append the tag in the div, that created in the top which id as  "mydiv"
+
+
+ </script>
+
+</body>
+</html>
