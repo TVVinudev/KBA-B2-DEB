@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Write a program to check whether a number is armstrong or not</h3>
+    <br>
+    <script>
+        let num = 371;
+        let copy = num
+        let result = 0;
+
+        while (num > 0) {
+            let temp = num % 10;
+            result = result + (temp * temp * temp);
+            num = Math.floor(num / 10);
+        }
+        if (result == copy) {
+            document.write(`<br>${copy} is an amstrong number`)
+        } else {
+            document.write(`<br>${copy} is not an amstrong number`)
+        }
+
+    </script>
+</body>
+
+</html>
