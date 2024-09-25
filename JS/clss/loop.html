@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let str = "javascript";
+        for (let v = 0; v < 10; v++) {
+            document.write(str, "<br>");
+        }
+
+        //firtst 10 natural number 
+
+        {
+            document.write("<br> firtst 10 natural number <br> ");
+            for (let v = 0; v <= 10; v++) {
+                document.write(v, "<br>");
+            }
+
+        }
+
+        //firtst 10 even number 
+
+        {
+            document.write("<br> firtst 10 even number <br> ");
+            let count = 0
+            for (let v = 0; v < 10; v++) {
+                count = count + 2
+                document.write(count, "<br>");
+            }
+
+        }
+
+        //sum of firtst 10 even number 
+
+        {
+            document.write("<br> sum of firtst 10 even number  <br> ");
+            let count = 0
+            for (let v = 0; v <= 10; v++) {
+                count = count + v
+            }
+            document.write(count, "<br>");
+
+        }
+
+        //reverse number 
+
+        {
+            document.write("<br> Reverse of a number<br>")
+            let number = 123
+            document.write("<br>Number :", number)
+            let rev = 0
+            let temp = 0
+            while (number > 0) {
+                temp = number % 10;
+                number = Math.floor(number / 10);
+                rev = (rev * 10) + temp;
+            }
+            document.write("<br>Reverse : ", rev)
+        }
+
+    </script>
+</body>
+
+</html>
