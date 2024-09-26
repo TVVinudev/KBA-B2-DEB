@@ -11,16 +11,19 @@
     <h3>Write a program to check whether a number is armstrong or not</h3>
     <br>
     <script>
-        let num = 371;
+        let num = 153;
+        let pow = num.toString().length;
+
         let copy = num
-        let result = 0;
+        let sum = 0;
 
         while (num > 0) {
             let temp = num % 10;
-            result = result + (temp * temp * temp);
+            let x = Math.pow(temp,pow)
+            sum=sum+x;
             num = Math.floor(num / 10);
         }
-        if (result == copy) {
+        if (sum == copy) {
             document.write(`<br>${copy} is an amstrong number`)
         } else {
             document.write(`<br>${copy} is not an amstrong number`)

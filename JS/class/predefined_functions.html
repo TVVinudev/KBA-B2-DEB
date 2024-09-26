@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Array Predefind Functions</h3>
+    <script>
+
+        let a = [1, 2, 3, 4];
+        document.write(a)
+
+        //push in the back side of the array
+        a.push(5); // this function add the element in the last of the array
+        document.write("<br>", a)
+
+        //pop
+        a.pop(); // this function remove the last element of the array
+        document.write("<br>", a)
+
+        //toString()
+        let b = a.toString() // convert a as a string to b
+        document.write("<br>", b[1])
+
+        //concat array
+        let c = [2, 3, 4, 5]
+        let d = a.concat(c); // combain both arrays into d
+        document.write("<br>",d)
+
+        // splice() using for inserting elements in particular position in an array
+        // splice( position, elete any element, value, value)
+        c.splice(2,0,19,6)
+        document.write("<br>",c);
+
+        //slice(starting) => slice a particular point to end
+        let k = c.slice(2)
+        document.write("<br>",k)
+
+        //slice(starting,ending) => slice between the metioned starting and ending point
+       {
+        let k = c.slice(0,2)
+        document.write("<br>",k)
+       }  
+
+       //reverse() => reverse of the array
+       document.write("<br>",c.reverse());
+
+       //sort() => sort the given array
+       document.write("<br>",c.sort())
+
+       //indexOf() => find an element position in an array
+       let n = c.indexOf(6);
+       document.write("<br> Index of 6 is : ",n)
+
+       //join() => appending any particular charater in the array elements
+       document.write("<br>", c.join("*"))
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h3>Sum of 2 Arrays</h3>
+    <br>
+    <script>
+        let a = [1, 2, 3, 4];
+        let b = [8, 7, 6, 5];
+        let c = [];
+        let sumIn =0;
+        let sumOf=0
+        document.write(a, "<br>")
+        document.write(b, "<br><br>")
+
+        if (a.length == b.length) {
+            for (let i = 0; i < a.length; i++) {
+                c[i] = a[i] + b[i];
+            }
+
+            document.write("sum of A & B [",c,"]<br>")
+
+            for (x in c) { // using for-in loop
+                sumIn= sumIn + c[x];
+            }
+            document.write("<br>Sum using for-in : ",sumIn)
+
+            for (x of c) { // using for-of loop
+            
+                sumOf= sumOf + x;
+            }
+            document.write("<br>Sum using for-of : ",sumOf)
+        
+        
+
+        } else {
+            document.write("array length is not same. ")
+        }
+    </script>
+
+</body>
+
+</html>
