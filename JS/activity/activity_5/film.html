@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        let array=["Goat","ARM","Kishkintha kandam","Jeo","Nariman","Premalu"];
-        
-        document.write(array,"<br>");
-        document.write(" A. ","position of Hridayam :",array.indexOf("Hridayam"));
+        let array = ["Goat", "ARM", "Kishkintha kandam", "Leo", "Nariman", "Titanic"];
+
+        document.write(array, "<br>");
+        document.write(" A. ", "position of Leo:", array.indexOf("Leo"));
         document.write("<br><br>")
 
         document.write("B. add new film using push<br>");
-        array.push("Kannur Squard");
+        array.push("AIE");
         document.write(array);
         document.write("<br><br>")
 
-        document.write("C.\t delete a film using pop<br>");
+        document.write("C. delete a film using pop<br>");
         array.pop();
         document.write(array);
         document.write("<br><br>")
 
-        document.write("D.\t delete a least interested film<br>");
-        array.splice(4,1);
+        document.write("D.  delete a least interested film<br>");
+        array.splice(4, 1);
         document.write(array);
         document.write("<br><br>")
 
-        document.write("E.\t Different list using slice<br>");
-        let array1=array.slice(2,5);
+        document.write("E. Different list using slice<br>");
+        let array1 = array.slice(2, 5);
         document.write(array1);
         document.write("<br><br>");
 
-        document.write("D.\t search ARM using <br>");
-        let searchvalue="ARM";
-        for(x of array){
-            if(searchvalue===x){
-                document.write("<br>True");
-            }
-        }
-        // document.write(array);
-        document.write("<br><br>")
+        document.write("D. search Leo using <br>");
+        let y = document.write(array.includes("Leo"));
+    
 
 
 
     </script>
 </body>
+
 </html>

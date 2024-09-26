@@ -1,18 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <p>Patterns</p>
+    <h3>Pattern 1</h3>
     <script>
-        for(let i=1; i<=4;i++){
-            for(let j=0;j<=i;i++){
-                document.write(j+i)
+        for (let i = 1; i <= 4; i++) {
+            for (let j = 1; j <= i; j++) {
+                document.write(i, " ")
             }
+            document.write("<br>")
         }
     </script>
+
+    <br><br>
+
+    <h3>Pattern 2</h3>
+    <script>
+        let x = 1;
+        for (let i = 1; i <= 4; i++) {
+            for (let j = 1; j <= i; j++) {
+                document.write(x, " "),
+                    x = x + 1
+            }
+            document.write("<br>")
+        }
+    </script>
+
+    <br><br>
+
+    <h3>Pattern 3</h3>
+    <script>
+        {
+            let x = 2;
+            for (let i = 1; i <= 3; i++) {
+                for (let j = 1; j <= 3; j++) {
+                    document.write(x, " "),
+                        x = x + 2
+                }
+                document.write("<br>")
+            }
+        } 
+    </script>
+
+    <br><br>
+
+    <h3>Pattern 4</h3>
+    <br>
+    <script>
+        for (let i = 3; i > 0; i--) {
+            for (let j = 1; j <= i; j++) {
+                document.write("* ")
+            }
+            document.write("<br>")
+        }
+
+    </script>
+
+    <br><br>
+
+    <h3>Pattern 5</h3>
+    <br>
+    <script>
+        {
+            let x = 2;
+            for (let i = 3; i > 0; i--) {
+                for (let j = 1; j <= i; j++) {
+                    document.write(x, " "),
+                        x = x + 2
+                }
+                document.write("<br>")
+            }
+
+        }
+
+    </script>
+
 </body>
+
 </html>
