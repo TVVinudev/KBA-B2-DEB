@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h3>Write a JavaScript conditional statement to find the sign of the product of three numbers. Display with the specified sign.</h3>
+    <h3>Write a JavaScript conditional statement to find the sign of the product of three numbers. Display with the
+        specified sign.</h3>
     <br>
     <script>
-        
+        let a = 10;
+        let b = 9;
+        let c = 1
+
+        let mul = a * b * c;
+
+        document.write(`product of ${a}, ${b} & ${c} is : `, mul)
+
+        let p = Math.sign(mul);
+
+        if (p == 1) {
+            document.write("<br>",mul, " is a positive number")
+        }else{
+            document.write("<br>",mul, " is a negative number")
+        }
+
     </script>
 </body>
+
 </html>
