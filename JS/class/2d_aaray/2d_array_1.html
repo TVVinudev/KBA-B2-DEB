@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Add content in a 2D Array</h3>
+    <br>
+    <script>
+        let c = [[], [], []];
+        let l = a.length;
+
+        for (let i = 0; i < l; i++) {
+            for (let j = 0; j < l; j++) {
+                c[i][j] = 1;
+                document.write(c[i][j], " ")
+            }
+            document.write("<br>")
+        }
+
+    </script>
+
+    <br><br>
+    <h3>
+        Print this pattern <br><br>
+        1 1 1 1<br>
+        2 2 2 2<br>
+        3 3 3 3<br>
+
+    </h3>
+    <br>
+    <script>
+
+        let a = [[], [], []];
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                a[i][j] = 1 + i;
+                document.write(a[i][j], " ")
+            }
+            document.write("<br>")
+        }
+
+
+    </script>
+
+    <br><br>
+    <h3>
+        Print this pattern <br><br>
+        2 4 6 8<br>
+        10 12 14 16<br>
+        18 20 22 24<br>
+
+    </h3>
+    <br>
+    <script>
+
+        let b = [[], [], []];
+        let x = 2
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 4; j++) {
+                b[i][j] = x;
+                x = x + 2;
+                document.write(b[i][j], " ")
+            }
+            document.write("<br>")
+        }
+
+
+    </script>
+    <br><br>
+
+    <h3>
+        Add matrix 1 & matrix 2
+
+    </h3>
+    <br>
+    <script>
+
+        let d = [[], [], []]
+        let al = a.length
+        let bl = b.length
+        if (al == bl) {
+            for (i = 0; i < 3; i++) {
+                for (j = 0; j < 4; j++) {
+                    d[i][j] = a[i][j] + b[i][j]
+                    document.write(d[i][j], " ")
+                }
+                document.write('<br>')
+            }
+        } else {
+            document.write("length are not same")
+        }
+
+
+
+    </script>
+    <br><br>
+
+    <h3>
+        Transpose
+
+    </h3>
+    <br>
+    <script>
+
+        let e = [[1,2,3], [4,5,6],[7,8,9]]
+        document.write("<h4>Before transpose</h4>")
+        for(i=0;i<e.length;i++){
+            for(j=0;j<e.length;j++){
+                document.write(e[i][j]," ")
+            }
+            document.write("<br>")
+        }
+
+        let f =[[],[],[]]
+
+        document.write("<br><h4>After transpose</h4>")
+
+        for (i = 0; i < f.length; i++) {
+            for (j = 0; j < e.length; j++) {
+                f[i][j] = e[j][i]
+                document.write(f[i][j]," ")
+            }
+            document.write('<br>')
+        }
+
+
+    </script>
+</body>
+
+</html>
