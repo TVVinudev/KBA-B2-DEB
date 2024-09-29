@@ -11,12 +11,12 @@
     <h3>Read two matrix and check whether they are same or not</h3>
     <br>
     <script>
-        let a = [[1, 26, 3], [4, 99, 2], [55, 89, 3]]
-        let b = [[10, 0, 65], [10, 5, 36], [80, 77, 44]]
-        let sum = [[], [], []];
+        let a = [[1, 26, 31], [4, 99, 2], [55, 89, 3]]
+        let b = [[1, 26, 31], [4, 99, 2], [55, 89, 3]]
+        let flag = 0;
 
         document.write("<br> First array : <br>");
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < a.length; i++) {
             for (let j = 0; j < 3; j++) {
                 document.write(a[i][j], " ");
             }
@@ -24,21 +24,29 @@
         }
 
         document.write("<br> Second array : <br>");
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < b.length; i++) {
             for (let j = 0; j < 3; j++) {
                 document.write(b[i][j], " ");
             }
             document.write("<br>");
         }
 
-        document.write("<br> Sum of First and Second : <br>");
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                sum[i][j] = a[i][j] + b[i][j]
-                document.write(sum[i][j], " ");
+     
+            for (let i = 0; i < a.length; i++) {
+                for (let j = 0; j < b.length; j++) {
+                    if ( a[i][j] != b[i][j] ) {
+                        flag = 1;
+                        break;
+                    }
+                }
             }
-            document.write("<br>");
-        }
+
+            if (flag == 1) {
+                document.write("<br> The given arrays are different <br>");
+            } else {
+                document.write("<br> The given arrays are same <br>");
+            }
+
 
 
     </script>
