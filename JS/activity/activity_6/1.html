@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Read two matrix and check whether they are same or not</h3>
+    <br>
+    <script>
+        let a = [[1, 26, 3], [4, 99, 2], [55, 89, 3]]
+        let b = [[10, 0, 65], [10, 5, 36], [80, 77, 44]]
+        let sum = [[], [], []];
+
+        document.write("<br> First array : <br>");
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                document.write(a[i][j], " ");
+            }
+            document.write("<br>");
+        }
+
+        document.write("<br> Second array : <br>");
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                document.write(b[i][j], " ");
+            }
+            document.write("<br>");
+        }
+
+        document.write("<br> Sum of First and Second : <br>");
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                sum[i][j] = a[i][j] + b[i][j]
+                document.write(sum[i][j], " ");
+            }
+            document.write("<br>");
+        }
+
+
+    </script>
+</body>
+
+</html>
