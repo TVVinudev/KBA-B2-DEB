@@ -31,7 +31,7 @@
             document.write("<br>");
         }
 
-     
+        if(a.length== b.length){
             for (let i = 0; i < a.length; i++) {
                 for (let j = 0; j < b.length; j++) {
                     if ( a[i][j] != b[i][j] ) {
@@ -47,6 +47,11 @@
                 document.write("<br> The given arrays are same <br>");
             }
 
+        }else{
+            document.write("Lengths are not equal")
+        }
+     
+          
 
 
     </script>
