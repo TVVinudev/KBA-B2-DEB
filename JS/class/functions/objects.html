@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let person = {
+            name: "vinu",
+            age: 24,
+            place: "kottayam",
+            greet: function () {
+                document.write("hello ", this.name) // "this" refers to the objects. 
+            }
+        }
+        document.write(person.name, "<br>")
+        document.write(person.age, "<br>")
+        document.write(person.place, "<br>")
+        person.greet();
+
+
+
+        // In an object method, this refers to the object.
+        // Alone, this refers to the global object.
+        // In a function, this refers to the global object.
+        // In a function, in strict mode, this is undefined.
+        // In an event, this refers to the element that received the event.
+        // Methods like call(), apply(), and bind() can refer this to any object.
+
+        
+    </script>
+</body>
+
+</html>
