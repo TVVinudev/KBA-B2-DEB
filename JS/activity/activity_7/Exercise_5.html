@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Create an HTML form that allows the user to input two numbers. Write a function named performCalculation that reads
+    the two numbers from the input fields and logs whether their sum is even or odd. Trigger this function when a button
+    is clicked. -->
+
+    <label for="numberOne">enter first number</label>
+    <input type="number" id="numberOne"> <br>
+    <label for="numberTwo">enter second number</label>
+    <input type="number" id="numberTwo"> <br>
+    <button onclick="performCalculation()">Submit</button>
+
+    <p id="sum"></p>
+
+    <script>
+        function performCalculation() {
+            let a = document.getElementById('numberOne').value;
+            let b = document.getElementById('numberTwo').value;
+
+
+            let sum = parseFloat(a) + parseFloat(b);
+
+            document.getElementById('sum').textContent = sum
+
+
+            if (sum % 2 == 0) {
+                console.log("The sum of given number is an even number")
+            } else {
+                console.log("The sum of given number is an odd number")
+            }
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 
+    Define a function userInfo that accepts a username as a parameter and logs "Welcome, [username]". Inside this
+    function, define and immediately invoke another function named displayMessage that logs "User [username] has logged
+    in". Ensure that both functions have access to the username variable. -->
+
+    <script>
+
+        function userInfo (userName){
+            document.write("Welcome, ",userName);
+            function displayMessage(){
+                document.write(`<br> User ${userName} has logged in`)
+            }
+            displayMessage();
+        }
+        userInfo("John");
+
+    </script>
+
+
+</body>
+
+</html>
