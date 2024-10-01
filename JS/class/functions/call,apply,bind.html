@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>call method in function</h1>
+    <p>chech the console for output</p>
+    <script>
+        function greet(greetings) {
+            console.log(greetings + " " + this.name)
+        }
+        let person = {
+            name: 'alice',
+            age: 28
+        }
+        greet.call(person, 'Hello'); // externally call 'this' using call();
+
+
+
+        const people = {  // externally call 'this' using call() in object functions;
+            fullName: function (city, country) {
+                console.log(this.firstName + " " + this.lastName + " " + city + " " + country)
+            }
+        }
+
+        let person1 = {
+            firstName: 'John',
+            lastName: 'Wick'
+        }
+        let person2 = {
+            firstName: 'Johny',
+            lastName: 'Wisly'
+        }
+        let person3 = {
+            firstName: 'Johny',
+            lastName: 'Wisly'
+        }
+
+        people.fullName.call(person1, "Kochi", "India")
+
+        people.fullName.apply(person2, ["kottayam", "india"])   // externally call 'this' using apply() in object functions;
+                                                               // parameters passed in the array format
+
+        const boundFunction = person.fullName.bind(person3,"Kollam","india"); // externally call 'this' using bind() in object functions;
+
+        boundFunction();
+
+
+
+
+
+    </script>
+</body>
+
+</html>

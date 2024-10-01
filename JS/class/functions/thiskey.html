@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Check the scope of "this" keyword</h1>
+    <p>open console for the output</p>
+    <button onclick="showAlert()">Alert</button>
+
+    <script>
+        console.log(this)//global window object
+        function showthis() {
+            console.log (this)
+        }
+
+        showthis(); // window object
+
+        let person = {
+            name: 'Bob',
+            greet: function () {
+                console.log ("hellow", this.name)
+            }
+        };
+        person.greet();//output hellow bob
+
+        let arrowGreet = ()=>{
+            console.log('Arrow function This Context ', this) //no local scope in this type of functions
+        }
+        arrowGreet();// output window object
+
+        function showAlert(){
+            window.alert("Warning")// function objects
+        }
+
+        (function(){ // immediately invoked function expression
+            console.log('Function is immediately executed')
+        })();
+
+    </script>
+</body>
+
+</html>
