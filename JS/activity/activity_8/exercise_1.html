@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Output Displayed in console</h1>
+
+    <!-- Define an arrow function greetLater that takes a parameter name and logs "Hello, [name]" after 2 seconds. Use
+    setTimeout to delay the log. The arrow function should use the global this context. Explain why the this context
+    behaves the way it does in an arrow function. -->
+
+    <script>
+
+
+        let greetLater = (name) => {
+            setTimeout(() => {
+                console.log("hello," + name);
+                console.log(this)
+            }, 2000);
+        };
+        greetLater("Anu");
+
+
+        let person ={
+            name : "John",
+            greetLater : function(){  //normal function
+                setTimeout(() => {
+                    console.log("hello," + this.name)
+                }, 2000);
+            },
+            greetLater1 : ()=>{          //arrow function
+                setTimeout(() => {
+                    console.log("hello," + this.name)
+                }, 2000);
+            }
+        }
+        person.greetLater();
+        person.greetLater1();
+
+        // Arrow functions do not bind their own this, instead, they inherit the one from the parent scope, 
+        // which is called "lexical scoping". This makes arrow functions to be a great choice in some scenarios 
+        // but a very bad one in others
+
+    </script>
+
+</body>
+
+</html>

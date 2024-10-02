@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Output Displayed in console</h1>
+
+    <!-- Create an object person1 with firstname and lastname properties. Define a function printFullName outside of the
+    object that logs the full name in the format "Full Name: [firstname] [lastname]". Use the call, apply, and bind
+    methods to invoke printFullName for two other objects, person2 and person3, each with their own firstname and
+    lastname properties. -->
+
+    <script>
+
+
+        let person1 = {
+            firstName: 'John',
+            lastName: 'Wick'
+        }
+
+        let person2 = {
+            firstName: 'Wikky',
+            lastName: 'Sone'
+        }
+        let person3 = {
+            firstName: 'Yam',
+            lastName: 'Kie'
+        }
+
+        function printFullName() {
+            console.log("Full Name: ",this.firstName + " " + this.lastName)
+        }
+
+        printFullName.call(person1);
+        printFullName.apply(person2);
+        const bindFunction = printFullName.bind(person3);
+        bindFunction();
+
+
+    </script>
+
+</body>
+
+</html>
