@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <label for="num1">number</label>
+        <input type="text" id="num1" style="margin-top: 20px; width: 60px;">
+        <label for="operator">operator</label>
+        <input type="text" id="operator" style="margin-top: 20px; width: 60px;">
+        <label for="num2">number</label>
+        <input type="text" id="num2" style="margin-top: 20px; width: 60px;">
+
+
+        <button onclick="calc()" style="margin-left: 20px; width: 60px;"> = </button>
+        <label for="" id="result" style="margin-left: 20px;"></label>
+    </div>
+
+    <script>
+        function calc() {
+            let num1 = parseFloat(document.getElementById('num1').value)
+            let num2 = parseFloat(document.getElementById('num2').value)
+            let opt = document.getElementById('operator').value;
+
+            switch (opt) {
+                case '+': let sum = num1 + num2;
+                    document.getElementById('result').textContent = sum;
+                    break;
+                case '*': let mul = num1 * num2;
+                    document.getElementById('result').textContent = mul;
+                    break;
+                case '/': let div = num1 / num2;
+                    document.getElementById('result').textContent = div;
+                    break;
+                case '-': let dif = num1 - num2;
+                    document.getElementById('result').textContent = dif;
+                    break;
+                default: document.getElementById('result').textContent = "invalid operator";
+            }
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
