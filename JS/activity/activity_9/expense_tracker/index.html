@@ -4,36 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Expense Tracker</title>
+
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .expns-food {
+            color: green;
+        }
+
+        .expns-transport {
+            color: blue;
+        }
+
+        .expns-entertainment {
+            color: purple;
+        }
+    </style>
 </head>
 
 <body>
+
     <h1>Expense Tracker Application</h1>
 
-    <input type="text" id="description" placeholder="Description">
-    <input type="text" id="amount" placeholder="Amount">
-    <input type="text" id="catagory" placeholder="(1-Food, 2-Transport, 3-Entertainment)">
-    <input type="button" value="submit" onclick="expense()">
-    <br><br>
+    <label for="decrptn">Enter the description</label>
+    <input type="text" id="decrptn" placeholder="Enter the expense description"> <br>
 
-    <ul class="taskList"></ul>
+    <label for="amount">Enter the expense amount</label>
+    <input type="text" id="amount" placeholder="Enter the expense amount"> <br>
 
 
-    <script>
-        function expense() {
-            let description = document.getElementById('description').value.trim();
-            let amount = Number(document.getElementById('amount').value.trim())
-            let catagory = Number(document.getElementById('catagory').value.trim())
-
-            if (description !== '' && !isNaN(amount) && !isNaN(catagory) && catagory >= 1 && catagory <= 3) {
-
-                
-
-            }
+    <label for="catgry">Enter 1-Food, 2-Transport, 3-Entertainment</label>
+    <input type="text" id="catgry" placeholder="Enter the expense description"> <br>
 
 
-        }
-    </script>
+    <button onclick="addExpense()">Add Expenses</button>
+    <ul id="expenselist"></ul>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function basicMapOperation() {
+            let map = new Map()
+            // map.set('Name', 'John')
+            // map.set('age', 45)
+            // document.getElementById('getName').innerHTML = 'Name : ' + map.get('Name');
+            // document.getElementById('getAge').innerHTML = 'Age : ' + map.get('age')
+
+            // let output = '';
+            // map.forEach((value, key) => {
+            //     output += key + '=' + value + '<br>'
+            // });
+            // document.getElementById('iteration').innerHTML = output; 
+
+
+            map.set('name', ['john', 'anu', 'pournami']);
+            map.set('age', 98);
+
+            let names = map.get('name');
+            document.getElementById('getName').innerHTML = 'Names :' + names.join(',');
+            document.getElementById('getAge').innerHTML = 'Age :' + map.get('age')
+
+            let output = '';
+            map.forEach((value, key) => {
+                if (Array.isArray(value)) {
+                    output += key + ':' + value.join(',') + '<br>'
+                } else {
+                    output += key + ':' + value + '<br>'
+                }
+            });
+            document.getElementById('iteration').innerHTML = output;
+
+
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Map Operations</h1>
+    <h2>Map Iteration</h2>
+    <button onclick="basicMapOperation()">Show map Operation</button>
+
+    <div id="getName"></div>
+    <div id="getAge"></div>
+    <div id="iteration"></div>
+
+
+</body>
+
+</html>

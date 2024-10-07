@@ -21,10 +21,13 @@
 
             let tasklist = document.getElementById('displayList');
             let taskValue =  document.getElementById('task');
+            // console.log(taskValue.value);
             let tasks = taskValue.value.trim();
+            // console.log('After trim: ',taskValue.value.trim());
 
             let li = document.createElement('li');
-            li.textContent = tasks;
+            li.innerHTML = tasks;
+            tasklist.appendChild(li);
 
             let removeButton = document.createElement('button');
             removeButton.textContent = 'Remove'
@@ -32,6 +35,7 @@
 
                 tasklist.removeChild(li);
             }
+        
 
             let editedText = document.createElement('input');
             editedText.type = 'text';
@@ -61,7 +65,7 @@
 
             li.appendChild(removeButton);
             li.appendChild(editButton);
-            tasklist.appendChild(li);
+            
           
             taskValue.value = " ";
         }
