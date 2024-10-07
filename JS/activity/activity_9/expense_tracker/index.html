@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Expense Tracker Application</h1>
+
+    <input type="text" id="description" placeholder="Description">
+    <input type="text" id="amount" placeholder="Amount">
+    <input type="text" id="catagory" placeholder="(1-Food, 2-Transport, 3-Entertainment)">
+    <input type="button" value="submit" onclick="expense()">
+    <br><br>
+
+    <ul class="taskList"></ul>
+
+
+    <script>
+        function expense() {
+            let description = document.getElementById('description').value.trim();
+            let amount = Number(document.getElementById('amount').value.trim())
+            let catagory = Number(document.getElementById('catagory').value.trim())
+
+            if (description !== '' && !isNaN(amount) && !isNaN(catagory) && catagory >= 1 && catagory <= 3) {
+
+                
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
