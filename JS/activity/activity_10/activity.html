@@ -13,14 +13,15 @@
             ShoppingCart.set('Milk', [1, 48])
             let totalCost = 0;
             ShoppingCart.forEach((value, key) => {
+
                 if (Array.isArray(value)) {
-                    // let x = 1
-                    // for (i = 0; i < value.length; i++) {
-                    //     x = x * value[i];
-                    // }
-                    // totalCost = totalCost + x
+                    let x = 1
+                    for (i = 0; i < value.length; i++) {
+                        x = x * value[i];
+                    }
+                    totalCost = totalCost + x
                     
-                    totalCost = totalCost + (value[0] * value[1]);
+                    // totalCost = totalCost + (value[0] * value[1]);
                 }
             });
             document.getElementById('totalCost').innerHTML = 'Total cost  : ' + totalCost;

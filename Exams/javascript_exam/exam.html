@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .low {
+            color: green;
+        }
+
+        .medium {
+            color: orange
+        }
+
+        .high {
+            color: red
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+    <!-- Question 2: Fitness Activity Tracker (30 marks)
+    Objective:
+
+    Create a Fitness Activity Tracker application where users can add, edit, complete, and remove fitness activities.
+    Each activity should have a name and an intensity level (1-Low, 2-Medium, 3-High). The application should use type
+    conversion and arrays to manage the activities and their intensity levels.
+
+    Requirements:
+    a) HTML Structure (5 marks)
+    Create an input field for the activity name.
+    Create an input field for the intensity level (1-Low, 2-Medium, 3-High).
+    Add a button to add the activity.
+    Include an unordered list to display the activities.
+    b) Adding and Displaying Activities (10 marks)
+    In JavaScript, implement a function to add an activity with its name and intensity level.
+    Use arrays to keep track of activities and their intensity levels.
+    Use type conversion to ensure the intensity level input is handled correctly.
+    Display activities with different colors based on their intensity level:
+    Low (green)
+    Medium (orange)
+    High (red)
+    c) Completing and Editing Activities (5 marks)
+    Implement functionality to mark an activity as "completed" by striking through the text and changing the color to
+    gray.
+    Implement functionality to edit the name of an activity.
+    d) Removing Activities and Local Storage (10 marks)
+    Implement functionality to remove an activity from the list.
+    Use localStorage to persist the activity list between sessions. -->
+
+
+
+    <h2>Fitness Active Tracker</h2>
+
+    <input type="text" id="name" placeholder="Activity Name">
+    <input type="text" id="level" placeholder="Intensity Level">
+    <button onclick="addActivity()">Add Activity</button>
+
+    <ul id="display"></ul>
+
+
+    <script>
+
+        let activity = [];
+        let intensity = [];
+
+
+        function addActivity() {
+
+            let items = document.getElementById('name');
+            let activity_name = items.value.trim();
+
+            console.log(activity)
+
+            if (activity_name !== ' ' && !isNaN(input_level) && input_level >= 1 && input_level <= 3) {
+
+                saveToLocalStorage(activity_name);
+                createList(activity_name);
+                items.value = ' ';
+                level.value = ' ';
+
+            }
+        }
+
+        function createList(activity_name) {
+
+            let li = document.createElement('li');
+            li.textContent = activity_name;
+
+            let ul = document.getElementById('display');
+
+            let level = document.getElementById('level');
+            let input_level = Number(level.value.trim());
+
+            activity.push(activity_name);
+            intensity.push(input_level);
+
+
+            switch (input_level) {
+                case 1: li.classList.add('low'); break;
+                case 2: li.classList.add('medium'); break;
+                case 3: li.classList.add('high'); break
+            }
+
+
+            let completedButton = document.createElement('button');
+            completedButton.textContent = 'Completed';
+            completedButton.onclick = () => {
+                li.classList.toggle('completed')
+            }
+
+            let editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.onclick = () => {
+                let newActivity = prompt('enter the updated activity', activity_name);
+                li.textContent = newActivity;
+
+                let arrayIndex = activity.indexOf(activity_name);
+                activity[arrayIndex] = newActivity;
+                console.log(activity);
+
+                let activites_list = getNameFromLocalstorage();
+                let index = activites_list.indexOf;
+                activites_list[index] = newActivity;
+                localStorage.setItem('activity_list', JSON.stringify(activites_list));
+
+
+                li.appendChild(completedButton);
+                li.appendChild(editButton)
+                li.appendChild(removeButton)
+            }
+
+            let removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => {
+
+                ul.removeChild(li);
+
+                let arrayIndex = activity.indexOf(activity_name);
+                activity = activity.filter(name => name !== activity_name);
+                // console.log(activity)
+
+                let activites_list = getNameFromLocalstorage();
+                activites_list = activites_list.filter(name => name !== activity_name);
+                console.log(activites_list)
+                localStorage.setItem('activity_list', JSON.stringify(activites_list))
+
+            }
+
+            li.appendChild(completedButton)
+            li.appendChild(editButton)
+            li.appendChild(removeButton)
+            ul.appendChild(li);
+        }
+
+
+        function saveToLocalStorage(name) {
+            let activites_list = getNameFromLocalstorage();
+            activites_list.push(name);
+            localStorage.setItem('activity_list', JSON.stringify(activites_list))
+        }
+
+        function getNameFromLocalstorage() {
+            const activites_list = localStorage.getItem('activity_list')
+            console.log(activites_list);
+            return activites_list ? JSON.parse(activites_list) : [];
+        }
+
+
+        window.onload = function () {
+            let activites_list = getNameFromLocalstorage();
+            activites_list.forEach(activity_name => {
+                createList(activity_name);
+            });
+        }
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

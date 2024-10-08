@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pri1 {
+            color: rgb(49, 214, 214);
+        }
+
+        .pri2 {
+            color: blue;
+        }
+
+        .pri3 {
+            color: blueviolet;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <input type="text" id="input" placeholder="enter the task">
+    <input type="text" id="prio" placeholder="enter the priority (1to3)">
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="ul"></ul>
+
+    <script>
+
+
+        function addTask() {
+            let ul = document.getElementById('ul')
+            let taskInput = document.getElementById('input');
+            let prior = document.getElementById('prio')
+            let task = taskInput.value.trim();
+            let priority = Number(prior.value.trim());
+
+
+
+            if (task !== '' && !isNaN(priority) && priority >= 1 && priority <= 3) {
+                createList(task,priority);
+                taskInput.value = " ";
+                prior.value =" ";
+            }
+        }
+
+            function createList(task,priority) {
+                let li = document.createElement('li');
+                li.textContent = task;
+
+                switch(priority){
+                    case 1 : li.classList.add('pri1');break;
+                    case 2 : li.classList.add('pri2');break;
+                    case 3 : li.classList.add('pri3');break;
+                    default: console.log("Ivalied input")
+                }
+
+                let removeButton = document.createElement('button');
+                removeButton.textContent = "REMOVE"
+                removeButton.onclick = () => {
+                    ul.removeChild(li);
+                }
+
+                let editText = document.createElement('input')
+                editText.id = 'newTasks'
+                editText.value = task;
+
+                let editButton = document.createElement('button')
+                editButton.textContent = "EDIT"
+                editButton.onclick = () => {
+                    li.replaceWith(editText)
+                    let saveButton = document.createElement('button')
+                    saveButton.textContent = 'SAVE';
+                    ul.appendChild(saveButton);
+
+                    saveButton.onclick = () => {
+                        let newTask = document.getElementById('newTasks').value;
+                        li.textContent = newTask;
+                        ul.appendChild(li);
+                        editText.remove();
+                        saveButton.remove();
+                        li.appendChild(removeButton);
+                        li.appendChild(editButton)
+                    }
+
+                }
+                li.appendChild(removeButton);
+                li.appendChild(editButton)
+                ul.appendChild(li);
+            }
+
+
+
+
+    </script>
+</body>
+
+</html>

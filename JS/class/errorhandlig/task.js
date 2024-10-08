@@ -9,7 +9,7 @@ function addTask() {
     let task = taskInput.value.trim();
     let priority = Number(priorityInput.value.trim());
 
-    if(task !== '' && !isNaN(priority) && priority>=1 && priority<=3){
+    if (task !== '' && !isNaN(priority) && priority >= 1 && priority <= 3) {
 
         //pushing entered tasks and priorities to the respective initialized arrays
         tasks.push(task);
@@ -18,7 +18,7 @@ function addTask() {
         const li = document.createElement('li');
         li.textContent = task;
 
-        switch(priority){
+        switch (priority) {
             case 1:
                 li.classList.add('priority-high');
                 break;
@@ -31,22 +31,22 @@ function addTask() {
         }
         const compltButton = document.createElement('button');
         compltButton.textContent = "Complete";
-        compltButton.onclick = function(){
+        compltButton.onclick = function () {
             li.classList.toggle('completed')
         };
         li.appendChild(compltButton);
 
         const editButton = document.createElement('button');
         editButton.textContent = "Edit";
-        
-        editButton.onclick = function(){
+
+        editButton.onclick = function () {
 
             const newTask = prompt('Edit task:', task);
-            if(newTask !== null && newTask.trim() !==''){
+            if (newTask !== null && newTask.trim() !== '') {
                 const taskIndex = tasks.indexOf(task);
                 tasks[taskIndex] = newTask; //update the respective task index in taskarray with new task
                 li.firstChild.textContent = newTask; //update the text node in DOM
-                task.newTask;
+                task = newTask;
             }
         };
         li.appendChild(editButton);
@@ -54,12 +54,12 @@ function addTask() {
         const removeButton = document.createElement('button');
         removeButton.textContent = "Remove";
 
-        removeButton.onclick = function(){
+        removeButton.onclick = function () {
 
             taskList.removeChild(li);
             const taskIndex = tasks.indexOf(task);
-            tasks.splice(taskIndex,1);
-            priorities.splice(taskIndex,1);
+            tasks.splice(taskIndex, 1);
+            priorities.splice(taskIndex, 1);
         };
 
         li.appendChild(removeButton);
@@ -68,7 +68,7 @@ function addTask() {
         priority.value = '';
 
     }
-    else{
+    else {
         alert("Please enter a valid task priority between 1 and 3");
     }
 }
