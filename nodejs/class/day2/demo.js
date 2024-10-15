@@ -67,7 +67,7 @@ function updateBookDetails() {
         rl.question('enter the book new name :', function (newTitle) {
             rl.question('enter the author name :', function (newName) {
                 book.title = newTitle !== undefined ? newTitle : book.title;
-                book.author = newName !== undefined ? newName : book.name;
+                book.author = newName !== undefined ? newName : book.author;
 
                 bookDetails.set(id, book);
                 console.log(bookDetails);
