@@ -1,7 +1,7 @@
 import { Router, json, response } from "express";
 import { authenticate } from "../middleware/auth.js";
 
-import bcrypt from 'bcrypt';
+import bcrypt, { compareSync } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 
@@ -84,34 +84,95 @@ adminRoute.post('/login', async (req, res) => {
 
 adminRoute.post('/addCourse', authenticate, (req, res) => {
 
-    try{
+    try {
         console.log('user name :', req.UserName);
         console.log('user role', req.UserRole);
-    
+
         if (req.UserRole === 'admin') {
             const body = req.body;
             console.log(body)
             const { cid, cname, ctype, cdescription, cprice } = body;
-            course.set(cid, {cname, ctype, cdescription, cprice});
+            course.set(cid, { cname, ctype, cdescription, cprice });
             res.status(200).json({ message: "Course added!" });
             console.log(course);
-    
+
         } else {
             console.log("you are not admin")
         }
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 
 
 });
 
+//search
+adminRoute.post('/getcourse', authenticate, (req, res) => {
+
+    try {
+
+        if (req.UserName) {
+            const body = req.body;
+            const search = body.search;
+
+            if (search) {
+                const result = [];
+                for (const [id, item] of course) {
+                    if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
+                        result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
+                        console.log(result);
+                        res.status(200).json({ message: "data availabe :", result })
+                        break;
+                    } else {
+                        console.log('Course not Available !');
+
+                    }
+                }
+
+            } else {
+                console.log('dont find any earch element')
+            }
+
+        } else {
+            console.log("not a valid user")
+        }
+
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 
+//update:
 
+adminRoute.post('/update', (req, res) => {
+    try {
+        const body = req.body;
+        console.log(body);
+        const { cid, cname, ctype, cdescription, cprice } = body;
+        console.log(cid, cname, ctype, cdescription, cprice);
 
+        if (cid) {
+            const oldData = course.get(cid)
+            console.log(oldData);
 
+            oldData.cname = cname || oldData.cname;
+            oldData.ctype = ctype || oldData.ctype;
+            oldData.cdescription = cdescription || oldData.cdescription;
+            oldData.cprice = cprice || oldData.cprice;
+            console.log(oldData);
+            course.set(cid, oldData);
+            console.log(course);
 
+        } else {
+            console.log('id is not found!')
+        }
+ 
+    }catch(error){
+        console.log(error);
+        
+    }
+});
 
 
 
