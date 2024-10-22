@@ -1,5 +1,6 @@
 import { Router, json, response } from "express";
 import { authenticate } from "../middleware/auth.js";
+import dotenv from 'dotenv';
 
 import bcrypt, { compareSync } from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -7,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 
 
-
+dotenv.config();
 const adminRoute = Router();
 
 
@@ -15,7 +16,7 @@ adminRoute.use(json());
 
 const data = new Map();
 const course = new Map();
-const secretkey = "dev";
+const secretkey = process.env.secretKey;
 
 
 adminRoute.get('/', (req, res) => {
@@ -92,6 +93,7 @@ adminRoute.post('/addCourse', authenticate, (req, res) => {
             const body = req.body;
             console.log(body)
             const { cid, cname, ctype, cdescription, cprice } = body;
+
             course.set(cid, { cname, ctype, cdescription, cprice });
             res.status(200).json({ message: "Course added!" });
             console.log(course);
@@ -117,20 +119,21 @@ adminRoute.post('/getcourse', authenticate, (req, res) => {
 
             if (search) {
                 const result = [];
-                for (const [id, item] of course) {
-                    if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
-                        result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
-                        console.log(result);
-                        res.status(200).json({ message: "data availabe :", result })
-                        break;
-                    } else {
-                        console.log('Course not Available !');
-
+                if (course.size > 0) {
+                    for (const [id, item] of course) {
+                        if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
+                            result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
+                            console.log(result);
+                            res.status(200).json({ message: "data availabe :", result })
+                            break;
+                        }else{
+                            console.log("search element not found!");
+                            
+                        }
                     }
-                }
-
-            } else {
-                console.log('dont find any earch element')
+                }else{
+                    console.log('Storage is empty!')
+                 }
             }
 
         } else {
@@ -145,36 +148,205 @@ adminRoute.post('/getcourse', authenticate, (req, res) => {
 
 //update:
 
-adminRoute.post('/update', (req, res) => {
+adminRoute.post('/update', authenticate, (req, res) => {
     try {
-        const body = req.body;
-        console.log(body);
-        const { cid, cname, ctype, cdescription, cprice } = body;
-        console.log(cid, cname, ctype, cdescription, cprice);
+        if (req.UserName) {
 
-        if (cid) {
-            const oldData = course.get(cid)
-            console.log(oldData);
+            const body = req.body;
+            console.log(body);
+            const { cid, cname, ctype, cdescription, cprice } = body;
+            console.log(cid, cname, ctype, cdescription, cprice);
 
-            oldData.cname = cname || oldData.cname;
-            oldData.ctype = ctype || oldData.ctype;
-            oldData.cdescription = cdescription || oldData.cdescription;
-            oldData.cprice = cprice || oldData.cprice;
-            console.log(oldData);
-            course.set(cid, oldData);
-            console.log(course);
+            if (cid) {
+                const oldData = course.get(cid)
+                console.log(oldData);
 
+                oldData.cname = cname || oldData.cname;
+                oldData.ctype = ctype || oldData.ctype;
+                oldData.cdescription = cdescription || oldData.cdescription;
+                oldData.cprice = cprice || oldData.cprice;
+
+                console.log(oldData);
+                course.set(cid, oldData);
+
+                res.status(200).json({ message: "successfully Updated" })
+                console.log(course);
+
+            } else {
+                console.log('id is not found!');
+                return res.status(404).json({ message: "Course not found" });
+            }
         } else {
-            console.log('id is not found!')
+            console.log('user not loggined')
+            return res.status(401).json({ message: "User not authenticated" });
         }
- 
-    }catch(error){
-        console.log(error);
-        
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+
     }
 });
 
 
+//put using update 
+
+adminRoute.put('/update/:id', authenticate, (req, res) => {
+    try {
+        if (req.UserName) {
+            const cid = req.params.id;
+            const body = req.body
+            const { cname, ctype, cdescription, cprice } = body;
+            console.log(cname, ctype, cdescription, cprice);
+
+            if (cid) {
+                const oldData = course.get(cid)
+                console.log(oldData);
+
+                oldData.cname = cname || oldData.cname;
+                oldData.ctype = ctype || oldData.ctype;
+                oldData.cdescription = cdescription || oldData.cdescription;
+                oldData.cprice = cprice || oldData.cprice;
+
+                console.log(oldData);
+                course.set(cid, oldData);
+
+                res.status(200).json({ message: "successfully Updated" })
+                console.log(course);
+
+            } else {
+                console.log('id is not found!');
+                return res.status(404).json({ message: "Course not found" });
+            }
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+//patch using update
+
+adminRoute.patch('/update/:id', authenticate, (req, res) => {
+    try {
+        if (req.UserName) {
+            const cid = req.params.id;
+            const body = req.body
+            const { cname, ctype, cdescription, cprice } = body;
+            console.log(cname, ctype, cdescription, cprice);
+
+            if (cid) {
+                const oldData = course.get(cid)
+                console.log(oldData);
+
+                oldData.cname = cname || oldData.cname;
+                oldData.ctype = ctype || oldData.ctype;
+                oldData.cdescription = cdescription || oldData.cdescription;
+                oldData.cprice = cprice || oldData.cprice;
+
+                console.log(oldData);
+                course.set(cid, oldData);
+
+                res.status(200).json({ message: "successfully Updated" })
+                console.log(course);
+
+            } else {
+                console.log('id is not found!');
+                return res.status(404).json({ message: "Course not found" });
+            }
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+
+
+
+///get method using params
+
+adminRoute.get('/search/:search', (req, res) => {
+
+    try {
+
+        const body = req.params.search;
+        const search = body;
+
+        if (search) {
+            const result = [];
+            for (const [id, item] of course) {
+                if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
+                    result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
+                    console.log(result);
+                    res.status(200).json({ message: "data availabe :", result })
+                    break;
+                }
+            }
+
+        } else {
+            console.log('dont find any earch element')
+        }
+    } catch (err) {
+        console.log(err);
+
+    }
+})
+
+
+///get method using query
+
+adminRoute.get('/search', (req, res) => {
+    try {
+        const body = req.query.element;
+        const search = body;
+        if (search) {
+            const result = [];
+            for (const [id, item] of course) {
+                if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
+                    result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
+                    console.log(result);
+                    res.status(200).json({ message: "data availabe :", result })
+                    break;
+                }
+            }
+
+        } else {
+            console.log('dont find any earch element')
+        }
+    } catch (err) {
+        console.log(err);
+
+    }
+})
+
+
+//delete
+
+
+adminRoute.delete('/delete/:id', authenticate, (req, res) => {
+    try {
+
+        const cid = req.params.id
+
+        if (req.UserRole === 'admin') {
+            if (course.has(cid)) {
+                course.delete(cid);
+                res.status(200).json({ message: "course deleted" })
+                console.log(course)
+            } else {
+                console.log('This id is not existed!');
+
+            }
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 

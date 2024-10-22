@@ -16,7 +16,7 @@ const authenticate = (req, res, next) => {
     for (let cooki of cookie) {
         const [name, token] = cooki.trim().split('=');
         console.log(name, token);
-        if (name === 'authToken') {
+        if (name === 'userToken') {
             const verified = jwt.verify(token, secretkey);
             console.log(verified);
             console.log(verified.UserName);
@@ -29,4 +29,4 @@ const authenticate = (req, res, next) => {
     next();
 }
 
-export { authenticate }
+export { authenticate };
