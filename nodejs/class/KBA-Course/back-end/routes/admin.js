@@ -2,6 +2,7 @@ import { Router, json, response } from "express";
 import { authenticate } from "../middleware/auth.js";
 import dotenv from 'dotenv';
 
+
 import bcrypt, { compareSync } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -32,15 +33,15 @@ adminRoute.post('/signup', async (req, res) => {
         const { firstname, lastname, username, password, role } = body;
 
         if (data.has(username)) {
-            res.status(404).json({ message: `${username} is already exit` });
+            res.status(409).json({ message: `${username} is already exit` });
             console.log(`${username} is already exit`);
 
         } else {
-            console.log(firstname, lastname, username, password, role);
+            
             const newpassword = await (bcrypt.hash(password, 10));
             console.log(newpassword);
             data.set(username, { firstname, lastname, newpassword, role });
-
+            console.log(data);
             res.status(201).json({ message: 'Successfully created' })
         }
 

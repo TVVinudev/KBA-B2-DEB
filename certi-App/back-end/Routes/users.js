@@ -14,6 +14,9 @@ const secretkey = process.env.secretKey;
 
 const certificate = new Map();
 
+
+//signupu
+
 userRoute.post('/signup', async (req, res) => {
     try {
         const body = req.body;
@@ -72,12 +75,12 @@ userRoute.post('/certificate', authenticate, (req, res) => {
         if (req.UserRole == 'admin') {
 
             const body = req.body;
-            const { studentid, student, course, date } = body;
+            const { cid ,cname, student, grade, date } = body;
 
-            if (certificate.has(studentid)) {
+            if (certificate.has(cid)) {
                 console.log("Already found an id !")
             } else {
-                certificate.set(studentid, { student, course, date });
+                certificate.set( cid , {cname, student, grade, date});
                 res.status(200).json({ message: "successfully added" });
                 console.log(certificate)
             }
@@ -97,10 +100,10 @@ userRoute.post('/certificate', authenticate, (req, res) => {
 userRoute.get('/search/:id', (req, res) => {
     try {
         const body = req.params.id;
-        const id = body;
+        const cid = body;
 
         if (certificate.has(id)) {
-            const data = certificate.get(id);
+            const data = certificate.get(cid);
             res.status(200).json({ message: "Certificate find" });
             console.log(data)
         } else {
