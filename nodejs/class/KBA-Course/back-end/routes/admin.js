@@ -37,7 +37,7 @@ adminRoute.post('/signup', async (req, res) => {
             console.log(`${username} is already exit`);
 
         } else {
-            
+
             const newpassword = await (bcrypt.hash(password, 10));
             console.log(newpassword);
             data.set(username, { firstname, lastname, newpassword, role });
@@ -127,14 +127,14 @@ adminRoute.post('/getcourse', authenticate, (req, res) => {
                             console.log(result);
                             res.status(200).json({ message: "data availabe :", result })
                             break;
-                        }else{
+                        } else {
                             console.log("search element not found!");
-                            
+
                         }
                     }
-                }else{
+                } else {
                     console.log('Storage is empty!')
-                 }
+                }
             }
 
         } else {
@@ -346,6 +346,36 @@ adminRoute.delete('/delete/:id', authenticate, (req, res) => {
 
     } catch (error) {
         console.log(error)
+    }
+})
+
+//view user
+
+adminRoute.get('/viewUser', authenticate, (req, res) => {
+    try {
+        const user = req.UserRole;
+        console.log(user)
+        res.json({user});
+    } catch (error) {
+        res.status(500).json({ message: "server error" })
+    }
+})
+
+//view courses
+
+adminRoute.get('/viewCourse', async(req,res)=>{
+    try{
+        console.log(course.size);
+
+        if(course.size!=0){
+            
+        res.send(Array.from(course.entries()))
+    }
+else{
+    res.status(404).json({message:'Not Found'});
+}}
+    catch{
+        res.status(404).json({message:"Internal error"})
     }
 })
 

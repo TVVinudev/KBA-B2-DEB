@@ -12,31 +12,38 @@
 
     <script>
 
-       async function handleLogin(){
+        async function handleLogin() {
 
             const username = document.getElementById('userName').value;
             const password = document.getElementById('password').value;
 
-            console.log(userName,password);
+            console.log(userName, password);
+            try {
+                const response = await fetch('http://127.0.0.1:8000/login', {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                    }),
+                });
 
-            const response = await fetch('http://127.0.0.1:8000/login',{
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password,
-                }),
-               } );
+                if (response.status === 200) {
+                    alert("successfully login");
+                    window.location.href='./home.html'
+                } else if (response.status == 400) {
+                    alert("userid or password is wrong")
+                } else {
+                    alert("server error!")
+                }
+            }catch(error){
+                console.error(error)
+            }
 
-               if(response.status===200){
-                alert("successfully login")
-               }else if(response.status==400){
-                alert("userid or password is wrong")
-               }else{
-                alert("server error!")
-               }
+          
 
         }
 
