@@ -100,10 +100,12 @@ adminRoute.post('/addCourse', authenticate, (req, res) => {
             console.log(course);
 
         } else {
+            res.status(404).json({message:"Not a valid user"})
             console.log("you are not admin")
         }
     } catch (error) {
-        console.log(error)
+        res.status(500).json({message:"server error"})
+        console.error(error)
     }
 
 

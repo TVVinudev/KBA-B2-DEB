@@ -67,8 +67,8 @@
                     // coursetype.value = course[2].ctype
                     coursetype.innerHTML = course[1].ctype
 
-                    const description = document.createElement("p");
-                    description.innerHTML = course[1].cdescription;
+                    // const description = document.createElement("p");
+                    // description.innerHTML = course[1].cdescription;
 
                     const courseprice = document.createElement("h3");
                     courseprice.id = 'CPrice';
@@ -89,7 +89,7 @@
                     coursediv.appendChild(courseid);
                     coursediv.appendChild(coursename);
                     coursediv.appendChild(coursetype);
-                    coursediv.appendChild(description);
+                    // coursediv.appendChild(description);
                     coursediv.appendChild(courseprice);
                     coursediv.appendChild(more);
                     container.appendChild(coursediv);
@@ -107,7 +107,7 @@
             const more = value;
             console.log(more);
             localStorage.setItem('course', more);
-            window.location.href = '/addCourse.html'
+            window.location.href = './viewCourse.html';
 
         }
 

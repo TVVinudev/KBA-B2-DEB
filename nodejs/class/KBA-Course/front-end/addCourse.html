@@ -10,16 +10,52 @@
 
     <script>
 
-        function addCourse() {
+        async function addCourse() {
+
+            try {
+                const cname = document.getElementById('cName').value;
+                const cId = document.getElementById('cID').value;
+                const cType = document.getElementById('cType').value;
+                const cDescription = document.getElementById('cDescription').value;
+                const cPrice = document.getElementById('cPrice').value;
+
+                console.log(cname, cId, cType, cDescription, cPrice);
+
+                const response = await fetch('http://127.0.0.1:8000/addCourse', {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        cid: cId,
+                        cname: cname,
+                        ctype: cType,
+                        cdescription: cDescription,
+                        cprice: cPrice
+                    })
+                });
 
 
-          const cname = document.getElementById('cName').value;  
+                console.log(response);
+                if (response.status === 200) {
 
+                    alert('Course added !');
 
-
-
+                    document.getElementById('cName').value = '';
+                    document.getElementById('cID').value = '';
+                    document.getElementById('cType').value = '';
+                    document.getElementById('cDescription').value = '';
+                    document.getElementById('cPrice').value = '';
+                }else{
+                    alert('data not found!')
+                }
+            } catch (error) {
+                console.log(error)
+            }
 
         }
+
 
 
 
@@ -69,12 +105,12 @@
                     </div>
                     <div class="pt-4">
                         <h4>Description</h4>
-                        <input type="text" id="cDescription" placeholder="Small description on the course"
-                            class="w-80 h-28 text-sm pl-2 rounded-lg shadow-md">
+                        <textarea id="cDescription" placeholder="Small description on the course"
+                            class="w-80 h-28 text-sm pl-2 rounded-lg shadow-md"></textarea>
                     </div>
                     <div class="pt-4">
                         <h4> Price</h4>
-                        <input type="text" id="cName" placeholder="Enter the Price " required
+                        <input type="text" id="cPrice" placeholder="Enter the Price " required
                             class="w-80 h-8 text-sm pl-2 rounded-lg shadow-md">
                     </div>
                     <div class="pt-4">
