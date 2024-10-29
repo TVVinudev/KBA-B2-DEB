@@ -100,11 +100,11 @@ adminRoute.post('/addCourse', authenticate, (req, res) => {
             console.log(course);
 
         } else {
-            res.status(404).json({message:"Not a valid user"})
+            res.status(404).json({ message: "Not a valid user" })
             console.log("you are not admin")
         }
     } catch (error) {
-        res.status(500).json({message:"server error"})
+        res.status(500).json({ message: "server error" })
         console.error(error)
     }
 
@@ -357,7 +357,7 @@ adminRoute.get('/viewUser', authenticate, (req, res) => {
     try {
         const user = req.UserRole;
         console.log(user)
-        res.json({user});
+        res.json({ user });
     } catch (error) {
         res.status(500).json({ message: "server error" })
     }
@@ -365,23 +365,39 @@ adminRoute.get('/viewUser', authenticate, (req, res) => {
 
 //view courses
 
-adminRoute.get('/viewCourse', async(req,res)=>{
-    try{
+adminRoute.get('/viewCourse', async (req, res) => {
+    try {
         console.log(course.size);
 
-        if(course.size!=0){
-            
-        res.send(Array.from(course.entries()))
+        if (course.size != 0) {
+
+            res.send(Array.from(course.entries()))
+        }
+        else {
+            res.status(404).json({ message: 'Not Found' });
+        }
     }
-else{
-    res.status(404).json({message:'Not Found'});
-}}
-    catch{
-        res.status(404).json({message:"Internal error"})
+    catch {
+        res.status(404).json({ message: "Internal error" })
     }
 })
 
+//logout
+
+adminRoute.get('/logout', authenticate, (req, res) => {
+    try {
+        if (req.UserRole) {
+            res.clearCookie('authToken');
+            res.status(200).json({ message: "Logout successfull" });
+        } else {
+            res.status(404).json({ message: "No user found!" })
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" })
+    }
+
+})
 
 
-
-export { adminRoute };
+export { adminRoute, course };

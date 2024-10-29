@@ -7,6 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <title>Blockchain Courses</title>
+
+    <style>
+        
+    </style>
+
+
+
+
+
     <script>
         window.onload = async () => {
             try {
@@ -43,29 +52,43 @@
 
             if (response.status != 404) {
                 // console.log(data1, "data");
-                const container = document.getElementById("cards")
+                const container = document.getElementById("cards");
+                container.style.justifyContent="center";
+                container.style.marginBottom="15px";
                 container.innerHTML = '';
                 data1.forEach(course => {
                     console.log(course);
 
                     const coursediv = document.createElement("div");
-                    coursediv.style.border = '2px solid red';
+                    coursediv.style.boxShadow ='rgba(0, 0, 0, 0.35) 0px 5px 15px' 
                     coursediv.style.width = '250px'
+                    coursediv.style.padding="10px"
 
                     const courseid = document.createElement("h4");
                     courseid.id = 'CID';
                     // courseid.value = course[0]
-                    courseid.innerHTML = course[0];
+                    courseid.innerHTML = 'CID:' + course[0];
+                    courseid.style.fontSize="10px";
+                    courseid.style.color='#c1bfbf';
                     
                     const coursename = document.createElement("h1");
                     coursename.id = 'CName';
                     // coursename.value = course[1].cname;
                     coursename.innerHTML = course[1].cname;
+                    coursename.style.fontSize="20px";
+                    coursename.style.textTransform="uppercase";
+                    coursename.style.fontWeight="600";
+                    coursename.style.textAlign="center";
+                    coursename.style.margin="10px";
+                    
 
                     const coursetype = document.createElement("h3");
                     coursetype.id = 'CType';
                     // coursetype.value = course[2].ctype
                     coursetype.innerHTML = course[1].ctype
+                    coursetype.style.fontStyle='italic'
+                    coursetype.style.fontSize='10px'
+                    coursetype.style.color='#f0be38'
 
                     // const description = document.createElement("p");
                     // description.innerHTML = course[1].cdescription;
@@ -73,7 +96,7 @@
                     const courseprice = document.createElement("h3");
                     courseprice.id = 'CPrice';
                     // courseprice.value = course[4].cprice
-                    courseprice.innerHTML = course[1].cprice
+                    courseprice.innerHTML ="₹" + course[1].cprice
 
 
                     const more = document.createElement("input");
@@ -99,7 +122,8 @@
 
             }
             else {
-                window.location.href = '/notfound.html';
+                alert('No data Found!')
+                // window.location.href = '/notfound.html';
             }
 
         }
@@ -109,6 +133,27 @@
             localStorage.setItem('course', more);
             window.location.href = './viewCourse.html';
 
+        }
+
+       async function logout(){
+            try {
+                const response = await fetch('http://127.0.0.1:8000/logout',{
+                method:"GET",
+                credentials:"include"
+            })
+            console.log(response.status);
+            if(response.ok){
+                alert('Logout successfully');
+                window.location.href='./login.html'
+            }else{
+                alert('you are not login');
+                window.location.href='./login.html'
+            }
+            } catch (error) {
+                console.error(error);
+               
+            }
+            
         }
 
 

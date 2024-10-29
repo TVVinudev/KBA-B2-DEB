@@ -3,6 +3,7 @@ import { adminRoute } from "./routes/admin.js";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from "cookie-parser";
+import userRoute from "./routes/user.js";
 
 
 dotenv.config();
@@ -16,10 +17,12 @@ app.use(cors({
 app.use(json());
 app.use(cookieParser());
 app.use('/',adminRoute);
+app.use('/user',userRoute);
 
 
 
 const port = process.env.port;
+
 
 
 app.listen(port ,()=>{
