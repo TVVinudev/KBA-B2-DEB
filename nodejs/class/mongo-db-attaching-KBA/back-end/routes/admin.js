@@ -1,10 +1,9 @@
 import { Router, json, response } from "express";
 import { authenticate } from "../middleware/auth.js";
 import dotenv from 'dotenv';
-
-
 import bcrypt, { compareSync } from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 
 
@@ -15,9 +14,28 @@ const adminRoute = Router();
 
 adminRoute.use(json());
 
-const data = new Map();
-const course = new Map();
+// const data = new Map();
+// const course = new Map();
 const secretkey = process.env.secretKey;
+
+//Define User Schema
+const userSchema = new mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    username: { type: String, unique: true },
+    password: String,
+    role: String
+});
+const courseSchema = new mongoose.Schema({
+    courseid: { type: String, unique: true },
+    coursename: String,
+    coursetype: String,
+    coursedescription: String,
+    courseprice: Number
+});
+const user = mongoose.model('Userdetails', userSchema);
+const course = mongoose.model('coursedetails', courseSchema);
+mongoose.connect('mongodb://localhost:27017/KBA-Courses'); // create database
 
 
 adminRoute.get('/', (req, res) => {
@@ -31,19 +49,48 @@ adminRoute.post('/signup', async (req, res) => {
 
 
         const { firstname, lastname, username, password, role } = body;
+        const newpassword = await (bcrypt.hash(password, 10));
+        console.log(newpassword);
 
-        if (data.has(username)) {
+        // if (data.has(username)) {
+        //     res.status(409).json({ message: `${username} is already exit` });
+        //     console.log(`${username} is already exit`);
+
+        // } else {
+
+        //     const newpassword = await (bcrypt.hash(password, 10));
+        //     console.log(newpassword);
+        //     data.set(username, { firstname, lastname, newpassword, role });
+        //     console.log(data);
+        //     res.status(201).json({ message: 'Successfully created' })
+        // }
+        const existingUser = await user.findOne({ username: username })
+        console.log(existingUser);
+
+
+        if (existingUser) {
             res.status(409).json({ message: `${username} is already exit` });
             console.log(`${username} is already exit`);
-
         } else {
+            const newUser = new user({
+                firstname: firstname,
+                lastname: lastname,
+                username: username,
+                password: newpassword,
+                role: role
+            });
 
-            const newpassword = await (bcrypt.hash(password, 10));
-            console.log(newpassword);
-            data.set(username, { firstname, lastname, newpassword, role });
-            console.log(data);
-            res.status(201).json({ message: 'Successfully created' })
+            console.log(newUser);
+
+
+            //use insertMany() or save() or create() to store the data in the db.
+
+            await newUser.save();
+            res.status(201).json({ message: "User register successfully" })
         }
+
+
+
 
 
     } catch (err) {
@@ -57,23 +104,26 @@ adminRoute.post('/login', async (req, res) => {
         const body = req.body;
         const { username, password } = body;
         console.log(username, password);
-        const result = data.get(username);
-        console.log(result);
 
-        const valid = await bcrypt.compare(password, result.newpassword);
-        console.log(valid);
+        const result = await user.findOne({ username: username });
 
-        if (valid) {
-            const token = jwt.sign({ UserName: username, UserRole: result.role }, secretkey, { expiresIn: '1h' });
-            console.log(token);
-            res.cookie('authToken', token, { httpOnly: true });
-            res.status(200).json({ message: 'Success' })
-
+        if (!result) {
+            res.status(404).json({ message: "usernot found" })
         } else {
-            res.status(400).json({ message: 'please check your username and password' })
-            console.log("please check your username and password");
-        }
+            const valid = await bcrypt.compare(password, result.password);
+            console.log(valid);
 
+            if (valid) {
+                const token = jwt.sign({ UserName: username, UserRole: result.role }, secretkey, { expiresIn: '1h' });
+                console.log(token);
+                res.cookie('authToken', token, { httpOnly: true });
+                res.status(200).json({ message: 'Success' })
+
+            } else {
+                res.status(400).json({ message: 'please check your username and password' })
+                console.log("please check your username and password");
+            }
+        }
 
     } catch (err) {
         console.log(err)
@@ -84,21 +134,38 @@ adminRoute.post('/login', async (req, res) => {
 
 
 
-adminRoute.post('/addCourse', authenticate, (req, res) => {
+adminRoute.post('/addCourse', authenticate, async (req, res) => {
 
     try {
         console.log('user name :', req.UserName);
         console.log('user role', req.UserRole);
 
         if (req.UserRole === 'admin') {
+
+
+
             const body = req.body;
             console.log(body)
             const { cid, cname, ctype, cdescription, cprice } = body;
+            // console.log('evide ethi')
 
-            course.set(cid, { cname, ctype, cdescription, cprice });
-            res.status(200).json({ message: "Course added!" });
-            console.log(course);
+            const courseFound = await course.findOne({ courseid: cid, })
 
+            if (courseFound) {
+                res.status(404).json({ message: "Course already found" })
+            } else {
+                const newCourse = new course({
+                    courseid: cid,
+                    coursename: cname,
+                    coursetype: ctype,
+                    coursedescription: cdescription,
+                    courseprice: parseInt(cprice)
+                });
+
+                await newCourse.save();
+                res.status(200).json({ message: "Course added!" });
+                // console.log(course);
+            }
         } else {
             res.status(404).json({ message: "Not a valid user" })
             console.log("you are not admin")
@@ -401,4 +468,4 @@ adminRoute.get('/logout', authenticate, (req, res) => {
 
 
 
-export { adminRoute, course };
+export { adminRoute };

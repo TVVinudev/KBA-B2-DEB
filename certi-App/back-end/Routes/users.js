@@ -115,6 +115,9 @@ userRoute.get('/search/:id', (req, res) => {
    
 })
 
+userRoute.get('/getData/:id',(req,res)=>{
+    
+})
 
 
 
