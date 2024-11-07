@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Dapp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<script>
+    window.onload = async () => {
+        console.log('hi');
+        try {
+            const response = await fetch("http://127.0.0.1:8080/viewUser", {
+                method: "GET",
+                credentials: "include",
+            });
+            const data = await response.json();
+            console.log(data);
+            if (data.user === 'admin') {
+                document.getElementById("admin").style.display = 'block';
+            }
+            if(data.user){
+                document.getElementById("logout").style.display = 'block';
+            }
+        }
+        catch (error) {
+            console.log(error);
+
+        }
+    }
+    async function searchResult() {
+        try {
+            const search_element = document.getElementById('search_element').value;
+            console.log(search_element)
+
+            const response = await fetch(`http://127.0.0.1:8080/search/${search_element}`, {
+                method: "GET",
+                credentials: "include",
+            });
+
+            if (response.ok) {
+                localStorage.setItem('certiId', search_element);
+                window.location.href = ('./viewcwertificate.html')
+            } else {
+                alert('This certificate ID is not found!')
+            }
+        } catch (error) {
+            console.error(error);
+            
+        }
+
+    }
+
+    async function logout() {
+
+        const response = await fetch('http://127.0.0.1:8080/logout', {
+            method: "GET",
+            credentials: "include",
+        })
+        window.location.href = ('./login.html')
+    }
+</script>
+
+<body class="bg-violet-50 ">
+    <div class=" w-full ">
+        <nav>
+            <ul class="flex flex-row justify-end space-x-4  p-6">
+                <li><a href="certiappfront.html"
+                        class=" font-sans font-bold text-white bg-blue-400 p-2 rounded-lg border-stone-300">Home</a>
+                </li>
+                <li><a href="issuecertificate.html" id="admin" class="font-sans border rounded-lg p-2 font-bold"
+                        style="display: none;">Issue Certificate</a></li>
+                <li><a href="login.html" id="logout" class="font-sans border rounded-lg p-2 font-bold" style="display: none;" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="w-2/4 m-auto ">
+        <div class="p-16">
+            <p class="font-mono font-bold text-2xl text-center p-16 text-4xl">Certificate Dapp</p>
+            <img src="online-course.png" class="w-1/5  m-auto">
+
+            <input type="text" class="w-80 h-12 rborder border-indigo-600 ring-2 ml-48 mt-6 pl-14 ro"
+                id="search_element" placeholder="Enter Certificate Id to View">
+            <button
+                class="mt-6  ml-4  min-w-24 h-12 px-3 py-2 text-white border border-indigo-600 bg-blue-400 p-2 rounded-lg"
+                onclick="searchResult()">Search</button>
+
+        </div>
+    </div>
+</body>
+
+</html>

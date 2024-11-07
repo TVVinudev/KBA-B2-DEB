@@ -116,7 +116,7 @@ adminRoute.post('/login', async (req, res) => {
             if (valid) {
                 const token = jwt.sign({ UserName: username, UserRole: result.role }, secretkey, { expiresIn: '1h' });
                 console.log(token);
-                res.cookie('authToken', token, { httpOnly: true });
+                res.cookie('KBAToken', token, { httpOnly: true });
                 res.status(200).json({ message: 'Success' })
 
             } else {
@@ -178,158 +178,153 @@ adminRoute.post('/addCourse', authenticate, async (req, res) => {
 
 });
 
-//search
-adminRoute.post('/getcourse', authenticate, (req, res) => {
-
-    try {
-
-        if (req.UserName) {
-            const body = req.body;
-            const search = body.search;
-
-            if (search) {
-                const result = [];
-                if (course.size > 0) {
-                    for (const [id, item] of course) {
-                        if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
-                            result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
-                            console.log(result);
-                            res.status(200).json({ message: "data availabe :", result })
-                            break;
-                        } else {
-                            console.log("search element not found!");
-
-                        }
-                    }
-                } else {
-                    console.log('Storage is empty!')
-                }
-            }
-
-        } else {
-            console.log("not a valid user")
-        }
-
-    } catch (err) {
-        console.log(err)
-    }
-})
 
 
 //update:
 
-adminRoute.post('/update', authenticate, (req, res) => {
+adminRoute.patch('/update', authenticate, async (req, res) => {
+    const body = req.body
+    const { cid, cname, ctype, cdescription, cprice } = body;
+
+    if (!cid || !cname || !ctype || !cdescription || !cprice) {
+        return res.status(400).json({ message: 'All fields are required: cid, cname, ctype, cdescription, cprice' });
+    }
+
     try {
-        if (req.UserName) {
 
-            const body = req.body;
-            console.log(body);
-            const { cid, cname, ctype, cdescription, cprice } = body;
-            console.log(cid, cname, ctype, cdescription, cprice);
-
-            if (cid) {
-                const oldData = course.get(cid)
-                console.log(oldData);
-
-                oldData.cname = cname || oldData.cname;
-                oldData.ctype = ctype || oldData.ctype;
-                oldData.cdescription = cdescription || oldData.cdescription;
-                oldData.cprice = cprice || oldData.cprice;
-
-                console.log(oldData);
-                course.set(cid, oldData);
-
-                res.status(200).json({ message: "successfully Updated" })
-                console.log(course);
-
-            } else {
-                console.log('id is not found!');
-                return res.status(404).json({ message: "Course not found" });
-            }
-        } else {
-            console.log('user not loggined')
+        if (req.UserRole !== 'admin') {
+            console.log('user not authenticated');
             return res.status(401).json({ message: "User not authenticated" });
+        }
+
+
+        const available = await course.findOne({ courseid: cid });
+        if (!available) {
+            return res.status(404).json({ message: 'Course not found!' });
+        }
+
+
+        const result = await course.updateOne(
+            { courseid: cid },
+            {
+                $set: {
+                    coursename: cname,
+                    coursetype: ctype,
+                    coursedescription: cdescription,
+                    courseprice: cprice
+                }
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(400).json({ message: 'Course could not be updated' });
+        } else {
+            return res.status(200).json({ message: 'Course updated successfully', result });
         }
 
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Internal Server Error" });
-
     }
 });
 
 
+
 //put using update 
 
-adminRoute.put('/update/:id', authenticate, (req, res) => {
+adminRoute.put('/update/:id', authenticate, async (req, res) => {
+    const cid = req.params.id;
+    const body = req.body
+    const { cname, ctype, cdescription, cprice } = body;
+
+    if (!cid || !cname || !ctype || !cdescription || !cprice) {
+        return res.status(400).json({ message: 'All fields are required: cid, cname, ctype, cdescription, cprice' });
+    }
+
     try {
-        if (req.UserName) {
-            const cid = req.params.id;
-            const body = req.body
-            const { cname, ctype, cdescription, cprice } = body;
-            console.log(cname, ctype, cdescription, cprice);
 
-            if (cid) {
-                const oldData = course.get(cid)
-                console.log(oldData);
-
-                oldData.cname = cname || oldData.cname;
-                oldData.ctype = ctype || oldData.ctype;
-                oldData.cdescription = cdescription || oldData.cdescription;
-                oldData.cprice = cprice || oldData.cprice;
-
-                console.log(oldData);
-                course.set(cid, oldData);
-
-                res.status(200).json({ message: "successfully Updated" })
-                console.log(course);
-
-            } else {
-                console.log('id is not found!');
-                return res.status(404).json({ message: "Course not found" });
-            }
+        if (req.UserRole !== 'admin') {
+            console.log('user not authenticated');
+            return res.status(401).json({ message: "User not authenticated" });
         }
 
 
+        const available = await course.findOne({ courseid: cid });
+        if (!available) {
+            return res.status(404).json({ message: 'Course not found!' });
+        }
+
+
+        const result = await course.updateOne(
+            { courseid: cid },
+            {
+                $set: {
+                    coursename: cname,
+                    coursetype: ctype,
+                    coursedescription: cdescription,
+                    courseprice: cprice
+                }
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(400).json({ message: 'Course could not be updated' });
+        } else {
+            return res.status(200).json({ message: 'Course updated successfully', result });
+        }
+
     } catch (error) {
-        console.log(error)
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 })
 
 //patch using update
 
-adminRoute.patch('/update/:id', authenticate, (req, res) => {
+adminRoute.post('/update/:id', authenticate, async (req, res) => {
+    const cid = req.params.id;
+    const body = req.body
+    const { cname, ctype, cdescription, cprice } = body;
+
+    if (!cid || !cname || !ctype || !cdescription || !cprice) {
+        return res.status(400).json({ message: 'All fields are required: cid, cname, ctype, cdescription, cprice' });
+    }
+
     try {
-        if (req.UserName) {
-            const cid = req.params.id;
-            const body = req.body
-            const { cname, ctype, cdescription, cprice } = body;
-            console.log(cname, ctype, cdescription, cprice);
 
-            if (cid) {
-                const oldData = course.get(cid)
-                console.log(oldData);
-
-                oldData.cname = cname || oldData.cname;
-                oldData.ctype = ctype || oldData.ctype;
-                oldData.cdescription = cdescription || oldData.cdescription;
-                oldData.cprice = cprice || oldData.cprice;
-
-                console.log(oldData);
-                course.set(cid, oldData);
-
-                res.status(200).json({ message: "successfully Updated" })
-                console.log(course);
-
-            } else {
-                console.log('id is not found!');
-                return res.status(404).json({ message: "Course not found" });
-            }
+        if (req.UserRole !== 'admin') {
+            console.log('user not authenticated');
+            return res.status(401).json({ message: "User not authenticated" });
         }
 
 
+        const available = await course.findOne({ courseid: cid });
+        if (!available) {
+            return res.status(404).json({ message: 'Course not found!' });
+        }
+
+
+        const result = await course.updateOne(
+            { courseid: cid },
+            {
+                $set: {
+                    coursename: cname,
+                    coursetype: ctype,
+                    coursedescription: cdescription,
+                    courseprice: cprice
+                }
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(400).json({ message: 'Course could not be updated' });
+        } else {
+            return res.status(200).json({ message: 'Course updated successfully', result });
+        }
+
     } catch (error) {
-        console.log(error)
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 })
 
@@ -339,49 +334,37 @@ adminRoute.patch('/update/:id', authenticate, (req, res) => {
 
 ///get method using params
 
-adminRoute.get('/search/:search', (req, res) => {
+adminRoute.get('/search/:search', async (req, res) => {
 
     try {
 
         const body = req.params.search;
-        const search = body;
 
-        if (search) {
-            const result = [];
-            for (const [id, item] of course) {
-                if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
-                    result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
-                    console.log(result);
-                    res.status(200).json({ message: "data availabe :", result })
-                    break;
-                }
-            }
-
-        } else {
-            console.log('dont find any earch element')
+        const result = await course.findOne({ courseid: search })
+        if (result) {
+            res.status(200).json({ data: result })
         }
+
     } catch (err) {
         console.log(err);
 
     }
 })
 
+//search using query
 
-///get method using query
-
-adminRoute.get('/search', (req, res) => {
+adminRoute.get('/search', async (req, res) => {
     try {
         const body = req.query.element;
         const search = body;
         if (search) {
-            const result = [];
-            for (const [id, item] of course) {
-                if (id.includes(search) || item.cname.includes(search) || item.ctype.includes(search)) {
-                    result.push(id, item.cname, item.ctype, item.cdescription, item.cprice);
-                    console.log(result);
-                    res.status(200).json({ message: "data availabe :", result })
-                    break;
-                }
+            const result = await course.findOne({ courseid: search });
+
+            if (result) {
+                // res.send(result);
+                res.status(200).json({ result })
+            } else {
+                res.status(404).json({ message: 'data not found!' })
             }
 
         } else {
@@ -392,24 +375,22 @@ adminRoute.get('/search', (req, res) => {
 
     }
 })
+
 
 
 //delete
 
 
-adminRoute.delete('/delete/:id', authenticate, (req, res) => {
+adminRoute.delete('/delete/:id', authenticate,async (req, res) => {
     try {
-
         const cid = req.params.id
 
         if (req.UserRole === 'admin') {
-            if (course.has(cid)) {
-                course.delete(cid);
-                res.status(200).json({ message: "course deleted" })
-                console.log(course)
-            } else {
-                console.log('This id is not existed!');
-
+            const result = await course.findOne({ courseid: cid })
+            if (result) {
+                const result = await collection.deleteOne({courseid:cid});
+                console.log(`${result.deletedCount} document(s) was/were deleted.`);
+                res.status(200).json({message:"Delete Successfully"})
             }
         }
 
@@ -434,18 +415,20 @@ adminRoute.get('/viewUser', authenticate, (req, res) => {
 
 adminRoute.get('/viewCourse', async (req, res) => {
     try {
-        console.log(course.size);
+        
+        const result = await course.find()
 
-        if (course.size != 0) {
+        if (result) {
 
-            res.send(Array.from(course.entries()))
+            res.send(Array.from(result.entries()))
+            res.status(200).json({message:"view all data"})
         }
         else {
             res.status(404).json({ message: 'Not Found' });
         }
     }
     catch {
-        res.status(404).json({ message: "Internal error" })
+        res.status(500).json({ message: "Internal error" })
     }
 })
 
