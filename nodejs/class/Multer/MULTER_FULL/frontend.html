@@ -32,10 +32,11 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
+            .then(response => response.t+++ext())
             .then(data => {
                 alert(data); // Alert with the success message and Image ID
-            })
+            })  //res.sendFile(path.join(__dirname, image.path));
+            // console.log("imagePath")
             .catch(error => {
                 console.error('Error uploading image:', error);
             });

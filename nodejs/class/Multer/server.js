@@ -82,7 +82,7 @@ app.get('/image/:id', async (req, res) => {
         res.status(500).send('Error processing image');
       });
     //res.sendFile(path.join(__dirname, image.path));
-   // console.log("imagePath")
+   // console.log("imagePath"
   } catch (error) {
     res.status(500).send('Error retrieving image');
   }

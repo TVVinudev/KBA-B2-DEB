@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLIBRA | Sign in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // window.onload = async () => {
+        //     try {
+        //         const response = await fetch("http://127.0.0.1:8000/viewUser", {
+        //             method: "GET",
+        //             credentials: "include"
+        //         })
+
+        //         const data = await response.json();
+
+        //         console.log(data.user)
+
+        //         if (data.user) {
+        //             document.getElementById('signin').style.display = 'none';
+        //             document.getElementById('logout').style.display = 'block';
+        //         }
+
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // }
+
+        async function signinUser() {
+            const uname = document.getElementById('uname').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch("http://127.0.0.1:8000/login", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: uname,
+                    password: password
+                })
+            });
+
+            console.log(response);
+            if(response.ok){
+                alert('login Successfully!');
+                window.location.href='../index.html'
+            }
+        }
+
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="m-3 p-4  flex justify-between shadow-2xl bg-[white] top-0 sticky">
+        <img src="./images/kbalogo.png" alt="" class="p-2 w-12">
+        <nav>
+            <ul class="flex justify-end p-2">
+                <li class="pr-5"><a href="../index.html"
+                        class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]">HOME</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!------------------Navbar------------------------>
+
+    <div class="w-full h-[90vh] bg-[#16423C] flex justify-center pb-5">
+        <div class=" h-[50vh] w-[600px] bg-[#C4DAD2] mt-14 rounded-2xl shadow-2xl">
+            <div class="block text-center pt-9 text-3xl text-white">
+                <span class="font-bold "> SIGN IN</span>
+            </div>
+            <div class="block text-center mt-5">
+                <input type="text" class="w-[450px] h-14 rounded-2xl pl-5" placeholder="User Name" id="uname">
+            </div>
+            <div class="block text-center mt-5">
+                <input type="password" class="w-[450px] h-14 rounded-2xl pl-5" placeholder="Password" id="password">
+            </div>
+            <div class="block text-center mt-5">
+                <button class="rounded-2xl bg-[#16423C] px-48 py-2 text-white" onclick="signinUser()">SUBMIT</button>
+            </div>
+            <div class="block ml-20 mt-5">
+                <a href="" class="text-blue-400">Forget Password ?</a>
+            </div>
+            <div class="block ml-20 mt-1">
+                Create an account ? <a href="./signup.html" class="text-blue-400">SIGN UP</a>
+            </div>
+
+
+        </div>
+    </div>
+    <!--------------------- section  ------------------------------>
+
+
+
+    <div class="flex justify-between mx-5">
+        <span> dlribrary@gmial.com</span>
+        <span>123 street,Kakkanad,Ernakulam</span>
+        <span>+123-456-7890</span>
+        <span class="font-bold">DLIBRA</span>
+    </div>
+
+    <!------------------ Footer --------------------------->
+
+</body>
+
+</html>
