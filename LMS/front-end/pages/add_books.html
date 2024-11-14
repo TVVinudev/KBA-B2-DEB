@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLIBRA | Add Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        window.onload = async () => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/viewUser", {
+                    method: "GET",
+                    credentials: "include"
+                })
+
+                const data = await response.json();
+
+                console.log(data.user)
+
+                if (data.user) {
+                    document.getElementById('signin').style.display = 'none';
+                    document.getElementById('logout').style.display = 'block';
+                }
+                if (data.user == 'admin') {
+                    document.getElementById('addBook').style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+
+
+
+
+
+        async function logout() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/logout', {
+                    method: "GET",
+                    credentials: "include"
+                })
+                console.log(response.status);
+                if (response.ok) {
+                    alert('Logout successfully');
+                    window.location.href = './pages/signin.html'
+                } else {
+                    alert('you are not login');
+                    window.location.href = './pages/signin.html'
+                }
+            } catch (error) {
+                console.error(error);
+
+            }
+
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <div class="m-3 p-4  flex justify-between shadow-2xl bg-[white] top-0 sticky">
+        <img src="./images/kbalogo.png" alt="" class="p-2 w-12">
+        <nav>
+            <ul class="flex justify-end p-2">
+                <li class="pr-5"><a href="../index.html"
+                        class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]">HOME</a></li>
+                <li class="pr-5"><a href="./add_books.html"
+                        class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]" style="display:none;"
+                        id="addBook">ADD BOOK</a></li>
+                <li class="pr-5"><a href="./view_books.html"
+                        class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]">VIEW BOOK</i>
+                <li class="pr-5"><a href="./signup.html"
+                        class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]" style="display:block;"
+                        id="signin">SIGN IN</a></li>
+                <li class="pr-5"><button class="text-[#16423C] hover:text-gray-400 font-[200] hover:font-[700]"
+                        style="display:none;" id="logout" onclick="logout()">LOGOUT</button></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!------------------Navbar------------------------>
+
+    <div class="w-full h-[90vh] bg-[#16423C] flex justify-center ">
+        <div class=" h-[700px] w-[600px] bg-[#C4DAD2] mt-14 rounded-2xl shadow-2xl">
+            <div class="block text-center pt-9 text-3xl text-white">
+                <span class="font-bold "> ADD BOOK</span>
+            </div>
+            <div class="block mt-5 px-10">
+                <form id="addBookForm" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="bookId" class="block text-sm font-medium text-gray-700">Book ID</label>
+                        <input type="text" id="bookId" name="bookId" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="bookname" class="block text-sm font-medium text-gray-700">Book Name</label>
+                        <input type="text" id="bookname" name="bookname" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
+                        <input type="text" id="author" name="author" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="description" name="description" rows="4" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="image" class="block text-sm font-medium text-gray-700">Book Image</label>
+                        <input type="file" id="image" name="image" accept="image/*" required
+                            class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                    </div>
+
+                    <div class="mb-4">
+                        <button type="submit"
+                            class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">
+                            Add Book
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="statusMessage" class="text-lg mt-4"></div>
+    </div>
+    <!--------------------- section  ------------------------------>
+
+
+
+    <div class="flex justify-between mx-5">
+        <span> dlribrary@gmial.com</span>
+        <span>123 street,Kakkanad,Ernakulam</span>
+        <span>+123-456-7890</span>
+        <span class="font-bold">DLIBRA</span>
+    </div>
+
+    <!------------------ Footer --------------------------->
+
+
+    <script>
+        document.getElementById('addBookForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('bookId', document.getElementById('bookId').value);
+            formData.append('bookname', document.getElementById('bookname').value);
+            formData.append('author', document.getElementById('author').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('image', document.getElementById('image').files[0]);
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/addBook', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+
+                const result = await response.json();
+
+                if (response.status === 201) {
+                    document.getElementById('statusMessage').textContent = 'Book added successfully!';
+                    document.getElementById('statusMessage').classList.add('text-green-500');
+                } else {
+                    document.getElementById('statusMessage').textContent = `Error: ${result.message}`;
+                    document.getElementById('statusMessage').classList.add('text-red-500');
+                }
+
+            } catch (error) {
+                console.error('Error adding book:', error);
+                document.getElementById('statusMessage').textContent = 'Error adding book.';
+                document.getElementById('statusMessage').classList.add('text-red-500');
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>
