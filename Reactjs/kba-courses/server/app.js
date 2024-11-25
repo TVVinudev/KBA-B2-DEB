@@ -7,8 +7,9 @@ const auth = require('./routes/auth')
 const cookieParser = require('cookie-parser')
 
 app.use(
-  cors({ 
+  cors({
     origin: "http://localhost:3000",
+    credentials: true
   })
 );
 
